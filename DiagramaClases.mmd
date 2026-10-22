@@ -1,0 +1,302 @@
+%% Diagrama de clases - Red de Centros de Distribucion (TicoPack Logistics)
+%% Renderizar con Mermaid (https://mermaid.live) o mermaid-cli.
+classDiagram
+    direction LR
+
+    %% ===================== Infraestructura =====================
+    class RedCentros {
+        -ListaEnlazada~CentroDistribucion*~ centros
+        +registrarCentro()
+        +eliminarCentro()
+        +buscarCentroPorCodigo() CentroDistribucion*
+        +buscarPaqueteGlobal() Paquete*
+        +buscarSolicitudGlobal() SolicitudEnvio*
+        +buscarDespachoGlobal() Despacho*
+        +cargarDatosDePrueba()
+    }
+
+    class CentroDistribucion {
+        -string codigo
+        -string nombre
+        -string provincia
+        -string direccion
+        -string telefono
+        +eliminarCliente() bool
+        +eliminarColaborador() bool
+        +eliminarPaquete() bool
+        +aprobarSolicitud() bool
+        +tieneDependencias() bool
+    }
+
+    class ListaEnlazada~T~ {
+        <<template>>
+        -Nodo~T~* cabeza
+        -Nodo~T~* cola
+        +insertarAlFinal(T)
+        +eliminarDato(T) bool
+        +liberarPunteros()
+    }
+
+    class Nodo~T~ {
+        <<template>>
+        -T dato
+        -Nodo~T~* siguiente
+    }
+
+    class Fecha {
+        -int dia
+        -int mes
+        -int anio
+        +mostrar() string
+        +hoy()$ Fecha
+    }
+
+    class TipoCategoria {
+        <<enumeration>>
+        GENERAL
+        FRAGIL
+        TECNOLOGIA
+        DOCUMENTOS
+    }
+
+    class Tarifas {
+        <<static>>
+        +TARIFA_GENERAL$ double
+        +TARIFA_FRAGIL$ double
+        +TARIFA_TECNOLOGIA$ double
+        +TARIFA_DOCUMENTOS$ double
+        +tarifaPorCategoria(TipoCategoria)$ double
+    }
+
+    RedCentros "1" *-- "0..*" CentroDistribucion : administra
+    ListaEnlazada ..> Nodo : usa
+    CentroDistribucion ..> Fecha : usa
+    Tarifas ..> TipoCategoria : usa
+
+    %% ===================== Clientes y Colaboradores =====================
+    class Cliente {
+        <<abstract>>
+        #string identificacion
+        #string nombre
+        #string telefono
+        #string correo
+        +aplicarDescuento(double) double
+        +getTipoCliente()* string
+        +mostrar() string
+    }
+
+    class ClientePersona {
+        +getTipoCliente() string
+    }
+
+    class ClienteEmpresa {
+        -string actividadEconomica
+        -double porcentajeDescuento
+        +aplicarDescuento(double) double
+        +getTipoCliente() string
+    }
+
+    class Colaborador {
+        -string identificacion
+        -string nombreCompleto
+        -Fecha fechaIngreso
+        -string puesto
+    }
+
+    class GestionClientes {
+        -ListaEnlazada~Cliente*~ clientes
+        +registrarPersona() bool
+        +registrarEmpresa() bool
+        +buscarPorIdentificacion() Cliente*
+        +eliminar() bool
+    }
+
+    class GestionColaboradores {
+        -ListaEnlazada~Colaborador*~ colaboradores
+        +registrar() bool
+        +buscarPorIdentificacion() Colaborador*
+        +eliminar() bool
+    }
+
+    Cliente <|-- ClientePersona
+    Cliente <|-- ClienteEmpresa
+    GestionClientes "1" o-- "0..*" Cliente : administra
+    GestionColaboradores "1" o-- "0..*" Colaborador : administra
+    CentroDistribucion "1" *-- "1" GestionClientes
+    CentroDistribucion "1" *-- "1" GestionColaboradores
+
+    %% ===================== Bodegas y Paquetes =====================
+    class Celda {
+        -int fila
+        -int columna
+        -bool ocupada
+        -Paquete* paquete
+        +asignar(Paquete*) bool
+        +liberar() bool
+    }
+
+    class Bodega {
+        -string codigo
+        -string nombre
+        -TipoCategoria tipo
+        -int filas
+        -int columnas
+        -Celda** matriz
+        +esCompatible(TipoCategoria) bool
+        +reservarCelda() bool
+        +liberarCelda() bool
+        +mostrarMatriz() string
+    }
+
+    class GestionBodegas {
+        -ListaEnlazada~Bodega*~ bodegas
+        +registrarBodega() bool
+        +mejorBodegaCompatible() Bodega*
+        +eliminar() bool
+    }
+
+    class EstadoPaquete {
+        <<enumeration>>
+        RECIBIDO
+        ALMACENADO
+        EN_TRANSITO
+        ENTREGADO
+        INCIDENCIA
+    }
+
+    class RegistroBitacora {
+        -EstadoPaquete estadoAnterior
+        -EstadoPaquete estadoNuevo
+        -Fecha fecha
+        -Colaborador* responsable
+    }
+
+    class Paquete {
+        -string codigo
+        -string descripcion
+        -double peso
+        -TipoCategoria categoria
+        -EstadoPaquete estado
+        -ListaEnlazada~RegistroBitacora*~ bitacora
+        +cambiarEstado(EstadoPaquete, Colaborador*) bool
+        +reportarIncidencia(Colaborador*) bool
+        +transicionValida(EstadoPaquete, EstadoPaquete)$ bool
+    }
+
+    class GestionPaquetes {
+        -ListaEnlazada~Paquete*~ paquetes
+        +registrarPaquete() Paquete*
+        +almacenarPaquete() bool
+        +reubicarPaquete() bool
+        +reportarIncidencia() bool
+        +resolverIncidencia() bool
+    }
+
+    Bodega "1" *-- "filas x columnas" Celda : matriz dinamica
+    Celda "0..1" --> "0..1" Paquete : contiene
+    GestionBodegas "1" o-- "0..*" Bodega : administra
+    GestionPaquetes "1" o-- "0..*" Paquete : administra
+    Paquete "1" *-- "0..*" RegistroBitacora : bitacora
+    Paquete "0..*" --> "1" Cliente : clientePropietario
+    Paquete "0..*" --> "0..1" Bodega : bodegaAsignada
+    Paquete ..> EstadoPaquete
+    RegistroBitacora "0..*" --> "0..1" Colaborador : responsable
+    CentroDistribucion "1" *-- "1" GestionBodegas
+    CentroDistribucion "1" *-- "1" GestionPaquetes
+    CentroDistribucion "0..*" --> "0..*" Paquete : pertenece
+
+    %% ===================== Solicitudes y Despachos =====================
+    class EstadoSolicitud {
+        <<enumeration>>
+        PENDIENTE
+        APROBADA
+        RECHAZADA
+        ANULADA
+    }
+
+    class SolicitudEnvio {
+        -string codigo
+        -string destino
+        -Fecha fechaSolicitud
+        -double costoEstimado
+        -EstadoSolicitud estado
+        +cambiarEstado(EstadoSolicitud) bool
+    }
+
+    class EstadoDespacho {
+        <<enumeration>>
+        EN_PROCESO
+        FINALIZADO
+    }
+
+    class Despacho {
+        -string codigo
+        -string destino
+        -Fecha fechaDespacho
+        -string hora
+        -EstadoDespacho estado
+        +finalizar() bool
+    }
+
+    class GestionSolicitudes {
+        -ListaEnlazada~SolicitudEnvio*~ solicitudes
+        +crearSolicitud() SolicitudEnvio*
+        +rechazar() bool
+        +anular() bool
+    }
+
+    class GestionDespachos {
+        -ListaEnlazada~Despacho*~ despachos
+        +crearDespacho() Despacho*
+        +finalizarEntrega() bool
+    }
+
+    class Reportes {
+        +historialCliente() string
+        +clientesPorCantidadEnvios() string
+        +bitacoraPaquete() string
+        +consultaDespachoPaquete() string
+        +ocupacionBodegas() string
+        +despachosPorColaborador() string
+    }
+
+    SolicitudEnvio "0..*" --> "1" Paquete
+    SolicitudEnvio "0..*" --> "1" Cliente
+    SolicitudEnvio "0..*" --> "1" Colaborador
+    SolicitudEnvio ..> EstadoSolicitud
+    Despacho "1" --> "1" SolicitudEnvio
+    Despacho "1" --> "1" Paquete
+    Despacho "0..*" --> "1" Colaborador
+    Despacho ..> EstadoDespacho
+    GestionSolicitudes "1" o-- "0..*" SolicitudEnvio : administra
+    GestionDespachos "1" o-- "0..*" Despacho : administra
+    CentroDistribucion "1" *-- "1" GestionSolicitudes
+    CentroDistribucion "1" *-- "1" GestionDespachos
+    Reportes ..> RedCentros : consulta
+    Reportes ..> CentroDistribucion : consulta
+
+    %% ===================== Interfaz (Menus) =====================
+    class Menu {
+        -RedCentros red
+        -Reportes reportes
+        -MenuCentros menuCentros
+        -MenuLogistica menuLogistica
+        +menuPrincipal()
+    }
+
+    class MenuCentros {
+        -RedCentros& red
+        +menu()
+    }
+
+    class MenuLogistica {
+        -RedCentros& red
+        +menuGeneral()
+    }
+
+    Menu "1" *-- "1" RedCentros
+    Menu "1" *-- "1" Reportes
+    Menu "1" *-- "1" MenuCentros
+    Menu "1" *-- "1" MenuLogistica
+    MenuCentros ..> RedCentros : opera sobre
+    MenuLogistica ..> RedCentros : opera sobre

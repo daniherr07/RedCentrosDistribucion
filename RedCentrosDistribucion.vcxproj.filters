@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Infraestructura">
+      <UniqueIdentifier>{1a2b3c4d-0001-4000-8000-000000000001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Clientes y Colaboradores">
+      <UniqueIdentifier>{1a2b3c4d-0002-4000-8000-000000000002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bodegas y Paquetes">
+      <UniqueIdentifier>{1a2b3c4d-0003-4000-8000-000000000003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Solicitudes y Despachos">
+      <UniqueIdentifier>{1a2b3c4d-0004-4000-8000-000000000004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interfaz (Menus)">
+      <UniqueIdentifier>{1a2b3c4d-0005-4000-8000-000000000005}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Nodo.h"><Filter>Infraestructura</Filter></ClInclude>
+    <ClInclude Include="ListaEnlazada.h"><Filter>Infraestructura</Filter></ClInclude>
+    <ClInclude Include="Fecha.h"><Filter>Infraestructura</Filter></ClInclude>
+    <ClInclude Include="TipoCategoria.h"><Filter>Infraestructura</Filter></ClInclude>
+    <ClInclude Include="Tarifas.h"><Filter>Infraestructura</Filter></ClInclude>
+    <ClInclude Include="EntradaUtil.h"><Filter>Infraestructura</Filter></ClInclude>
+    <ClInclude Include="RedCentros.h"><Filter>Infraestructura</Filter></ClInclude>
+    <ClInclude Include="CentroDistribucion.h"><Filter>Infraestructura</Filter></ClInclude>
+
+    <ClInclude Include="Cliente.h"><Filter>Clientes y Colaboradores</Filter></ClInclude>
+    <ClInclude Include="ClientePersona.h"><Filter>Clientes y Colaboradores</Filter></ClInclude>
+    <ClInclude Include="ClienteEmpresa.h"><Filter>Clientes y Colaboradores</Filter></ClInclude>
+    <ClInclude Include="Colaborador.h"><Filter>Clientes y Colaboradores</Filter></ClInclude>
+    <ClInclude Include="GestionClientes.h"><Filter>Clientes y Colaboradores</Filter></ClInclude>
+    <ClInclude Include="GestionColaboradores.h"><Filter>Clientes y Colaboradores</Filter></ClInclude>
+
+    <ClInclude Include="Celda.h"><Filter>Bodegas y Paquetes</Filter></ClInclude>
+    <ClInclude Include="Bodega.h"><Filter>Bodegas y Paquetes</Filter></ClInclude>
+    <ClInclude Include="GestionBodegas.h"><Filter>Bodegas y Paquetes</Filter></ClInclude>
+    <ClInclude Include="RegistroBitacora.h"><Filter>Bodegas y Paquetes</Filter></ClInclude>
+    <ClInclude Include="Paquete.h"><Filter>Bodegas y Paquetes</Filter></ClInclude>
+    <ClInclude Include="GestionPaquetes.h"><Filter>Bodegas y Paquetes</Filter></ClInclude>
+
+    <ClInclude Include="SolicitudEnvio.h"><Filter>Solicitudes y Despachos</Filter></ClInclude>
+    <ClInclude Include="GestionSolicitudes.h"><Filter>Solicitudes y Despachos</Filter></ClInclude>
+    <ClInclude Include="Despacho.h"><Filter>Solicitudes y Despachos</Filter></ClInclude>
+    <ClInclude Include="GestionDespachos.h"><Filter>Solicitudes y Despachos</Filter></ClInclude>
+    <ClInclude Include="Reportes.h"><Filter>Solicitudes y Despachos</Filter></ClInclude>
+
+    <ClInclude Include="Menu.h"><Filter>Interfaz (Menus)</Filter></ClInclude>
+    <ClInclude Include="MenuCentros.h"><Filter>Interfaz (Menus)</Filter></ClInclude>
+    <ClInclude Include="MenuLogistica.h"><Filter>Interfaz (Menus)</Filter></ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Fecha.cpp"><Filter>Infraestructura</Filter></ClCompile>
+    <ClCompile Include="RedCentros.cpp"><Filter>Infraestructura</Filter></ClCompile>
+    <ClCompile Include="CentroDistribucion.cpp"><Filter>Infraestructura</Filter></ClCompile>
+    <ClCompile Include="RedCentrosDistribucion.cpp"><Filter>Infraestructura</Filter></ClCompile>
+
+    <ClCompile Include="Cliente.cpp"><Filter>Clientes y Colaboradores</Filter></ClCompile>
+    <ClCompile Include="ClientePersona.cpp"><Filter>Clientes y Colaboradores</Filter></ClCompile>
+    <ClCompile Include="ClienteEmpresa.cpp"><Filter>Clientes y Colaboradores</Filter></ClCompile>
+    <ClCompile Include="Colaborador.cpp"><Filter>Clientes y Colaboradores</Filter></ClCompile>
+    <ClCompile Include="GestionClientes.cpp"><Filter>Clientes y Colaboradores</Filter></ClCompile>
+    <ClCompile Include="GestionColaboradores.cpp"><Filter>Clientes y Colaboradores</Filter></ClCompile>
+
+    <ClCompile Include="Celda.cpp"><Filter>Bodegas y Paquetes</Filter></ClCompile>
+    <ClCompile Include="Bodega.cpp"><Filter>Bodegas y Paquetes</Filter></ClCompile>
+    <ClCompile Include="GestionBodegas.cpp"><Filter>Bodegas y Paquetes</Filter></ClCompile>
+    <ClCompile Include="RegistroBitacora.cpp"><Filter>Bodegas y Paquetes</Filter></ClCompile>
+    <ClCompile Include="Paquete.cpp"><Filter>Bodegas y Paquetes</Filter></ClCompile>
+    <ClCompile Include="GestionPaquetes.cpp"><Filter>Bodegas y Paquetes</Filter></ClCompile>
+
+    <ClCompile Include="SolicitudEnvio.cpp"><Filter>Solicitudes y Despachos</Filter></ClCompile>
+    <ClCompile Include="GestionSolicitudes.cpp"><Filter>Solicitudes y Despachos</Filter></ClCompile>
+    <ClCompile Include="Despacho.cpp"><Filter>Solicitudes y Despachos</Filter></ClCompile>
+    <ClCompile Include="GestionDespachos.cpp"><Filter>Solicitudes y Despachos</Filter></ClCompile>
+    <ClCompile Include="Reportes.cpp"><Filter>Solicitudes y Despachos</Filter></ClCompile>
+
+    <ClCompile Include="Menu.cpp"><Filter>Interfaz (Menus)</Filter></ClCompile>
+    <ClCompile Include="MenuCentros.cpp"><Filter>Interfaz (Menus)</Filter></ClCompile>
+    <ClCompile Include="MenuLogistica.cpp"><Filter>Interfaz (Menus)</Filter></ClCompile>
+  </ItemGroup>
+</Project>
