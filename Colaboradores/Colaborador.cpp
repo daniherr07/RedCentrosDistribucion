@@ -14,11 +14,6 @@ std::string Colaborador::getNombreCompleto() const { return nombreCompleto; }
 Fecha Colaborador::getFechaIngreso() const { return fechaIngreso; }
 std::string Colaborador::getPuesto() const { return puesto; }
 
-void Colaborador::setPuesto(std::string puesto)
-{
-    this->puesto = puesto;
-}
-
 std::string Colaborador::mostrar() const
 {
     std::stringstream ss;

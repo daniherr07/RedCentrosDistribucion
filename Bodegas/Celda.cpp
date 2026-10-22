@@ -1,25 +1,8 @@
 #include "Celda.h"
 
 Celda::Celda() {
-	fila = 0;
-	columna = 0;
 	ocupada = false;
 	paquete = nullptr;
-}
-
-void Celda::inicializar(int filaNueva, int columnaNueva) {
-	fila = filaNueva;
-	columna = columnaNueva;
-	ocupada = false;
-	paquete = nullptr;
-}
-
-int Celda::getFila() const {
-	return fila;
-}
-
-int Celda::getColumna() const {
-	return columna;
 }
 
 bool Celda::estaOcupada() const {

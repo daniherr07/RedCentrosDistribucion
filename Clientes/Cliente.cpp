@@ -21,21 +21,6 @@ std::string Cliente::getNombre() const { return nombre; }
 std::string Cliente::getTelefono() const { return telefono; }
 std::string Cliente::getCorreo() const { return correo; }
 
-void Cliente::setNombre(std::string nombre)
-{
-    this->nombre = nombre;
-}
-
-void Cliente::setTelefono(std::string telefono)
-{
-    this->telefono = telefono;
-}
-
-void Cliente::setCorreo(std::string correo)
-{
-    this->correo = correo;
-}
-
 double Cliente::aplicarDescuento(double costoBase) const
 {
     // Persona fisica: no hay descuento, el costo final es el costo base.

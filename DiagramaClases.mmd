@@ -127,10 +127,9 @@ classDiagram
 
     %% ===================== Bodegas y Paquetes =====================
     class Celda {
-        -int fila
-        -int columna
         -bool ocupada
         -Paquete* paquete
+        +estaOcupada() bool
         +asignar(Paquete*) bool
         +liberar() bool
     }

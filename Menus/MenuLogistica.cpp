@@ -238,34 +238,35 @@ void MenuLogistica::registrarPaquete(CentroDistribucion* centro) {
 	}
 }
 
-void MenuLogistica::buscarPaquete(CentroDistribucion* centro) {
+void MenuLogistica::buscarPaquete() {
 	std::cout << "\n----- Buscar paquete -----\n";
-	std::cout << "Codigo del paquete: ";
+	std::cout << "Codigo del paquete (busqueda global, no hace falta saber de que centro es): ";
 	std::string codigo = leerPalabra();
 
-	Paquete* paquete = centro->getGestionPaquetes()->buscarPorCodigo(codigo);
+	Paquete* paquete = red.buscarPaqueteGlobal(codigo);
 	if (paquete == nullptr) {
-		std::cout << "No existe un paquete con ese codigo en este centro.\n";
+		std::cout << "No existe ningun paquete con ese codigo en el sistema.\n";
 		return;
 	}
-	std::cout << paquete->mostrar() << "\n";
+	std::cout << paquete->mostrar() << " | Centro: " << paquete->getCentro()->getCodigo() << "\n";
 }
 
 void MenuLogistica::mostrarPaquetes(CentroDistribucion* centro) {
 	std::cout << "\n" << centro->getGestionPaquetes()->mostrarListado() << std::endl;
 }
 
-void MenuLogistica::eliminarPaquete(CentroDistribucion* centro) {
+void MenuLogistica::eliminarPaquete() {
 	std::cout << "\n----- Eliminar paquete -----\n";
-	std::cout << "Codigo del paquete: ";
+	std::cout << "Codigo del paquete (busqueda global, no hace falta saber de que centro es): ";
 	std::string codigo = leerPalabra();
 
-	if (centro->getGestionPaquetes()->buscarPorCodigo(codigo) == nullptr) {
-		std::cout << "No existe un paquete con ese codigo en este centro.\n";
+	Paquete* paquete = red.buscarPaqueteGlobal(codigo);
+	if (paquete == nullptr) {
+		std::cout << "No existe ningun paquete con ese codigo en el sistema.\n";
 		return;
 	}
 
-	if (centro->eliminarPaquete(codigo)) {
+	if (paquete->getCentro()->eliminarPaquete(codigo)) {
 		std::cout << "Paquete eliminado exitosamente.\n";
 	}
 	else {
@@ -468,9 +469,9 @@ void MenuLogistica::menuPaquetes(CentroDistribucion* centro) {
 
 		switch (opcion) {
 		case 1: registrarPaquete(centro); break;
-		case 2: buscarPaquete(centro); break;
+		case 2: buscarPaquete(); break;
 		case 3: mostrarPaquetes(centro); break;
-		case 4: eliminarPaquete(centro); break;
+		case 4: eliminarPaquete(); break;
 		case 5: almacenarPaquete(centro); break;
 		case 6: reubicarPaquete(centro); break;
 		case 7: reportarIncidencia(centro); break;
@@ -526,17 +527,17 @@ void MenuLogistica::crearSolicitud(CentroDistribucion* centro) {
 	}
 }
 
-void MenuLogistica::buscarSolicitud(CentroDistribucion* centro) {
+void MenuLogistica::buscarSolicitud() {
 	std::cout << "\n----- Buscar solicitud -----\n";
-	std::cout << "Codigo de la solicitud: ";
+	std::cout << "Codigo de la solicitud (busqueda global, no hace falta saber de que centro es): ";
 	std::string codigo = leerPalabra();
 
-	SolicitudEnvio* solicitud = centro->getGestionSolicitudes()->buscarPorCodigo(codigo);
+	SolicitudEnvio* solicitud = red.buscarSolicitudGlobal(codigo);
 	if (solicitud == nullptr) {
-		std::cout << "No existe una solicitud con ese codigo en este centro.\n";
+		std::cout << "No existe ninguna solicitud con ese codigo en el sistema.\n";
 		return;
 	}
-	std::cout << solicitud->mostrar() << "\n";
+	std::cout << solicitud->mostrar() << " | Centro: " << solicitud->getCentroOrigen()->getCodigo() << "\n";
 }
 
 void MenuLogistica::mostrarSolicitudes(CentroDistribucion* centro) {
@@ -635,7 +636,7 @@ void MenuLogistica::menuSolicitudes(CentroDistribucion* centro) {
 
 		switch (opcion) {
 		case 1: crearSolicitud(centro); break;
-		case 2: buscarSolicitud(centro); break;
+		case 2: buscarSolicitud(); break;
 		case 3: mostrarSolicitudes(centro); break;
 		case 4: aprobarSolicitud(centro); break;
 		case 5: rechazarOAnularSolicitud(centro); break;
@@ -652,17 +653,17 @@ void MenuLogistica::menuSolicitudes(CentroDistribucion* centro) {
 // Despachos
 // =======================================================================
 
-void MenuLogistica::buscarDespacho(CentroDistribucion* centro) {
+void MenuLogistica::buscarDespacho() {
 	std::cout << "\n----- Buscar despacho -----\n";
-	std::cout << "Codigo del despacho: ";
+	std::cout << "Codigo del despacho (busqueda global, no hace falta saber de que centro es): ";
 	std::string codigo = leerPalabra();
 
-	Despacho* despacho = centro->getGestionDespachos()->buscarPorCodigo(codigo);
+	Despacho* despacho = red.buscarDespachoGlobal(codigo);
 	if (despacho == nullptr) {
-		std::cout << "No existe un despacho con ese codigo en este centro.\n";
+		std::cout << "No existe ningun despacho con ese codigo en el sistema.\n";
 		return;
 	}
-	std::cout << despacho->mostrar() << "\n";
+	std::cout << despacho->mostrar() << " | Centro: " << despacho->getCentroOrigen()->getCodigo() << "\n";
 }
 
 void MenuLogistica::mostrarDespachos(CentroDistribucion* centro) {
@@ -709,7 +710,7 @@ void MenuLogistica::menuDespachos(CentroDistribucion* centro) {
 		opcion = leerEntero();
 
 		switch (opcion) {
-		case 1: buscarDespacho(centro); break;
+		case 1: buscarDespacho(); break;
 		case 2: mostrarDespachos(centro); break;
 		case 3: finalizarDespacho(centro); break;
 		case 4: break;

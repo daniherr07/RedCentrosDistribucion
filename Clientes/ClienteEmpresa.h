@@ -16,7 +16,6 @@ public:
 
     std::string getActividadEconomica() const;
     double getPorcentajeDescuento() const;
-    void setPorcentajeDescuento(double porcentajeDescuento);
 
     double aplicarDescuento(double costoBase) const override;
     std::string getTipoCliente() const override;

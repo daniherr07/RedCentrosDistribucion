@@ -32,10 +32,6 @@ public:
     std::string getTelefono() const;
     std::string getCorreo() const;
 
-    void setNombre(std::string nombre);
-    void setTelefono(std::string telefono);
-    void setCorreo(std::string correo);
-
     virtual double aplicarDescuento(double costoBase) const;
     virtual std::string getTipoCliente() const = 0;
     virtual std::string mostrar() const;

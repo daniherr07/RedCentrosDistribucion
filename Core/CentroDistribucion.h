@@ -41,11 +41,6 @@ public:
 	std::string getDireccion() const;
 	std::string getTelefono() const;
 
-	void setNombre(std::string nombre);
-	void setProvincia(std::string provincia);
-	void setDireccion(std::string direccion);
-	void setTelefono(std::string telefono);
-
 	GestionClientes* getGestionClientes() const;
 	GestionColaboradores* getGestionColaboradores() const;
 	GestionBodegas* getGestionBodegas() const;

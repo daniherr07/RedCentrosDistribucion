@@ -22,7 +22,5 @@ public:
     Fecha getFechaIngreso() const;
     std::string getPuesto() const;
 
-    void setPuesto(std::string puesto);
-
     std::string mostrar() const;
 };

@@ -25,9 +25,9 @@ private:
 
 	//--- Paquetes ---
 	void registrarPaquete(CentroDistribucion* centro);
-	void buscarPaquete(CentroDistribucion* centro);
+	void buscarPaquete(); //busca por codigo global (seccion 12: paquete se busca por su codigo unico en todo el sistema)
 	void mostrarPaquetes(CentroDistribucion* centro);
-	void eliminarPaquete(CentroDistribucion* centro);
+	void eliminarPaquete(); //busca por codigo global (igual que buscar: el paquete se identifica por su codigo unico en todo el sistema)
 	void almacenarPaquete(CentroDistribucion* centro);
 	void ejecutarAlmacenamiento(CentroDistribucion* centro, Paquete* paquete); //logica compartida: recomendar bodega/celda y guardar
 	void reubicarPaquete(CentroDistribucion* centro);
@@ -37,14 +37,14 @@ private:
 
 	//--- Solicitudes de envio ---
 	void crearSolicitud(CentroDistribucion* centro);
-	void buscarSolicitud(CentroDistribucion* centro);
+	void buscarSolicitud(); //busca por codigo global
 	void mostrarSolicitudes(CentroDistribucion* centro);
 	void aprobarSolicitud(CentroDistribucion* centro);
 	void rechazarOAnularSolicitud(CentroDistribucion* centro);
 	void menuSolicitudes(CentroDistribucion* centro);
 
 	//--- Despachos ---
-	void buscarDespacho(CentroDistribucion* centro);
+	void buscarDespacho(); //busca por codigo global
 	void mostrarDespachos(CentroDistribucion* centro);
 	void finalizarDespacho(CentroDistribucion* centro);
 	void menuDespachos(CentroDistribucion* centro);

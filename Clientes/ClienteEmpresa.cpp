@@ -12,11 +12,6 @@ ClienteEmpresa::ClienteEmpresa(std::string identificacion, std::string nombre, s
 std::string ClienteEmpresa::getActividadEconomica() const { return actividadEconomica; }
 double ClienteEmpresa::getPorcentajeDescuento() const { return porcentajeDescuento; }
 
-void ClienteEmpresa::setPorcentajeDescuento(double porcentajeDescuento)
-{
-    this->porcentajeDescuento = porcentajeDescuento;
-}
-
 double ClienteEmpresa::aplicarDescuento(double costoBase) const
 {
     // costo final = costo base - (costo base * porcentaje de descuento / 100)

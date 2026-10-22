@@ -31,11 +31,6 @@ std::string CentroDistribucion::getProvincia() const { return provincia; }
 std::string CentroDistribucion::getDireccion() const { return direccion; }
 std::string CentroDistribucion::getTelefono() const { return telefono; }
 
-void CentroDistribucion::setNombre(std::string nombre) { this->nombre = nombre; }
-void CentroDistribucion::setProvincia(std::string provincia) { this->provincia = provincia; }
-void CentroDistribucion::setDireccion(std::string direccion) { this->direccion = direccion; }
-void CentroDistribucion::setTelefono(std::string telefono) { this->telefono = telefono; }
-
 GestionClientes* CentroDistribucion::getGestionClientes() const { return clientes; }
 GestionColaboradores* CentroDistribucion::getGestionColaboradores() const { return colaboradores; }
 GestionBodegas* CentroDistribucion::getGestionBodegas() const { return bodegas; }

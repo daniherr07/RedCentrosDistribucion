@@ -12,10 +12,7 @@ Bodega::Bodega(std::string codigoNuevo, std::string nombreNuevo, TipoCategoria t
 
 	matriz = new Celda * [filas]; //arreglo de punteros a fila
 	for (int i = 0; i < filas; i++) {
-		matriz[i] = new Celda[columnas]; //cada fila es un arreglo de Celda
-		for (int j = 0; j < columnas; j++) {
-			matriz[i][j].inicializar(i, j);
-		}
+		matriz[i] = new Celda[columnas]; //cada fila es un arreglo de Celda, ya libres por el constructor de Celda
 	}
 }
 
