@@ -43,6 +43,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <!-- Carpetas por modulo: permite que todo el proyecto siga usando
+         #include "Archivo.h" sin importar en cual carpeta viva cada lado,
+         en vez de tener que escribir rutas relativas en cada include. -->
+    <IncludePath>$(ProjectDir)Infraestructura;$(ProjectDir)Core;$(ProjectDir)Clientes;$(ProjectDir)Colaboradores;$(ProjectDir)Bodegas;$(ProjectDir)Paquetes;$(ProjectDir)Solicitudes;$(ProjectDir)Despachos;$(ProjectDir)Reportes;$(ProjectDir)Menus;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -50,6 +56,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)Infraestructura;$(ProjectDir)Core;$(ProjectDir)Clientes;$(ProjectDir)Colaboradores;$(ProjectDir)Bodegas;$(ProjectDir)Paquetes;$(ProjectDir)Solicitudes;$(ProjectDir)Despachos;$(ProjectDir)Reportes;$(ProjectDir)Menus;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -68,6 +75,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)Infraestructura;$(ProjectDir)Core;$(ProjectDir)Clientes;$(ProjectDir)Colaboradores;$(ProjectDir)Bodegas;$(ProjectDir)Paquetes;$(ProjectDir)Solicitudes;$(ProjectDir)Despachos;$(ProjectDir)Reportes;$(ProjectDir)Menus;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -78,60 +86,60 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Bodega.cpp" />
-    <ClCompile Include="Celda.cpp" />
-    <ClCompile Include="CentroDistribucion.cpp" />
-    <ClCompile Include="Cliente.cpp" />
-    <ClCompile Include="ClienteEmpresa.cpp" />
-    <ClCompile Include="ClientePersona.cpp" />
-    <ClCompile Include="Colaborador.cpp" />
-    <ClCompile Include="Despacho.cpp" />
-    <ClCompile Include="Fecha.cpp" />
-    <ClCompile Include="GestionBodegas.cpp" />
-    <ClCompile Include="GestionClientes.cpp" />
-    <ClCompile Include="GestionColaboradores.cpp" />
-    <ClCompile Include="GestionDespachos.cpp" />
-    <ClCompile Include="GestionPaquetes.cpp" />
-    <ClCompile Include="GestionSolicitudes.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="MenuCentros.cpp" />
-    <ClCompile Include="MenuLogistica.cpp" />
-    <ClCompile Include="Paquete.cpp" />
-    <ClCompile Include="RedCentros.cpp" />
-    <ClCompile Include="RedCentrosDistribucion.cpp" />
-    <ClCompile Include="RegistroBitacora.cpp" />
-    <ClCompile Include="Reportes.cpp" />
-    <ClCompile Include="SolicitudEnvio.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Infraestructura\Fecha.cpp" />
+    <ClCompile Include="Core\RedCentros.cpp" />
+    <ClCompile Include="Core\CentroDistribucion.cpp" />
+    <ClCompile Include="Clientes\Cliente.cpp" />
+    <ClCompile Include="Clientes\ClientePersona.cpp" />
+    <ClCompile Include="Clientes\ClienteEmpresa.cpp" />
+    <ClCompile Include="Clientes\GestionClientes.cpp" />
+    <ClCompile Include="Colaboradores\Colaborador.cpp" />
+    <ClCompile Include="Colaboradores\GestionColaboradores.cpp" />
+    <ClCompile Include="Bodegas\Celda.cpp" />
+    <ClCompile Include="Bodegas\Bodega.cpp" />
+    <ClCompile Include="Bodegas\GestionBodegas.cpp" />
+    <ClCompile Include="Paquetes\RegistroBitacora.cpp" />
+    <ClCompile Include="Paquetes\Paquete.cpp" />
+    <ClCompile Include="Paquetes\GestionPaquetes.cpp" />
+    <ClCompile Include="Solicitudes\SolicitudEnvio.cpp" />
+    <ClCompile Include="Solicitudes\GestionSolicitudes.cpp" />
+    <ClCompile Include="Despachos\Despacho.cpp" />
+    <ClCompile Include="Despachos\GestionDespachos.cpp" />
+    <ClCompile Include="Reportes\Reportes.cpp" />
+    <ClCompile Include="Menus\Menu.cpp" />
+    <ClCompile Include="Menus\MenuCentros.cpp" />
+    <ClCompile Include="Menus\MenuLogistica.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bodega.h" />
-    <ClInclude Include="Celda.h" />
-    <ClInclude Include="CentroDistribucion.h" />
-    <ClInclude Include="Cliente.h" />
-    <ClInclude Include="ClienteEmpresa.h" />
-    <ClInclude Include="ClientePersona.h" />
-    <ClInclude Include="Colaborador.h" />
-    <ClInclude Include="Despacho.h" />
-    <ClInclude Include="EntradaUtil.h" />
-    <ClInclude Include="Fecha.h" />
-    <ClInclude Include="GestionBodegas.h" />
-    <ClInclude Include="GestionClientes.h" />
-    <ClInclude Include="GestionColaboradores.h" />
-    <ClInclude Include="GestionDespachos.h" />
-    <ClInclude Include="GestionPaquetes.h" />
-    <ClInclude Include="GestionSolicitudes.h" />
-    <ClInclude Include="ListaEnlazada.h" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="MenuCentros.h" />
-    <ClInclude Include="MenuLogistica.h" />
-    <ClInclude Include="Nodo.h" />
-    <ClInclude Include="Paquete.h" />
-    <ClInclude Include="RedCentros.h" />
-    <ClInclude Include="RegistroBitacora.h" />
-    <ClInclude Include="Reportes.h" />
-    <ClInclude Include="SolicitudEnvio.h" />
-    <ClInclude Include="Tarifas.h" />
-    <ClInclude Include="TipoCategoria.h" />
+    <ClInclude Include="Infraestructura\Nodo.h" />
+    <ClInclude Include="Infraestructura\ListaEnlazada.h" />
+    <ClInclude Include="Infraestructura\Fecha.h" />
+    <ClInclude Include="Infraestructura\TipoCategoria.h" />
+    <ClInclude Include="Infraestructura\Tarifas.h" />
+    <ClInclude Include="Infraestructura\EntradaUtil.h" />
+    <ClInclude Include="Core\RedCentros.h" />
+    <ClInclude Include="Core\CentroDistribucion.h" />
+    <ClInclude Include="Clientes\Cliente.h" />
+    <ClInclude Include="Clientes\ClientePersona.h" />
+    <ClInclude Include="Clientes\ClienteEmpresa.h" />
+    <ClInclude Include="Clientes\GestionClientes.h" />
+    <ClInclude Include="Colaboradores\Colaborador.h" />
+    <ClInclude Include="Colaboradores\GestionColaboradores.h" />
+    <ClInclude Include="Bodegas\Celda.h" />
+    <ClInclude Include="Bodegas\Bodega.h" />
+    <ClInclude Include="Bodegas\GestionBodegas.h" />
+    <ClInclude Include="Paquetes\RegistroBitacora.h" />
+    <ClInclude Include="Paquetes\Paquete.h" />
+    <ClInclude Include="Paquetes\GestionPaquetes.h" />
+    <ClInclude Include="Solicitudes\SolicitudEnvio.h" />
+    <ClInclude Include="Solicitudes\GestionSolicitudes.h" />
+    <ClInclude Include="Despachos\Despacho.h" />
+    <ClInclude Include="Despachos\GestionDespachos.h" />
+    <ClInclude Include="Reportes\Reportes.h" />
+    <ClInclude Include="Menus\Menu.h" />
+    <ClInclude Include="Menus\MenuCentros.h" />
+    <ClInclude Include="Menus\MenuLogistica.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
