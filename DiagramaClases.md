@@ -1,15 +1,21 @@
 # Diagrama de clases — Red de Centros de Distribucion
 
-El diagrama completo esta en [`DiagramaClases.svg`](DiagramaClases.svg) (imagen renderizada) y en
+El diagrama esta en [`DiagramaClases.svg`](DiagramaClases.svg) (imagen renderizada) y en
 [`DiagramaClases.mmd`](DiagramaClases.mmd) (fuente, formato [Mermaid](https://mermaid.live), por si se
-necesita regenerar la imagen o editarla).
+necesita regenerar la imagen o editarla). Es la version **completa pero simplificada**: muestra las 22
+clases del dominio y todas sus relaciones reales, pero cada caja solo lista sus atributos mas
+identificativos (sin metodos ni etiquetas de multiplicidad) para que se lea de un vistazo. El detalle
+completo de cada clase esta en el codigo fuente.
+
+No se dibujan por separado (son detalle de implementacion, no relaciones del dominio): `Nodo<T>` y
+`ListaEnlazada<T>` (la lista enlazada propia que usan las 7 colecciones del sistema, en vez de STL),
+`Fecha` (usada por `Colaborador`, `RegistroBitacora`, `SolicitudEnvio` y `Despacho`) y `Tarifas`
+(tarifas estaticas por `TipoCategoria`, usadas por `GestionSolicitudes` para calcular el costo).
 
 ## Resumen de relaciones por modulo
 
 **Infraestructura**
-- `RedCentros` *compone* una lista enlazada propia (`ListaEnlazada<CentroDistribucion*>`) de 0..* `CentroDistribucion`.
-- `ListaEnlazada<T>` y `Nodo<T>` son plantillas propias (no STL) usadas por las 7 colecciones del sistema.
-- `CentroDistribucion` usa `Fecha` para timbrar operaciones; `Tarifas` usa `TipoCategoria` para las tarifas por kg.
+- `RedCentros` *compone* una lista enlazada propia de 0..* `CentroDistribucion`.
 
 **Herencia de clientes**
 - `Cliente` (abstracta) es la superclase de `ClientePersona` y `ClienteEmpresa` (herencia, generalizacion).
@@ -41,5 +47,5 @@ necesita regenerar la imagen o editarla).
 ## Como regenerar la imagen
 
 ```bash
-npx @mermaid-js/mermaid-cli -i DiagramaClases.mmd -o DiagramaClases.svg -b white --width 2400
+npx @mermaid-js/mermaid-cli -i DiagramaClases.mmd -o DiagramaClases.svg -b white --width 2200
 ```
