@@ -2,15 +2,43 @@
 
 El diagrama esta en [`DiagramaClases.svg`](DiagramaClases.svg) (imagen renderizada) y en
 [`DiagramaClases.mmd`](DiagramaClases.mmd) (fuente, formato [Mermaid](https://mermaid.live), por si se
-necesita regenerar la imagen o editarla). Es la version **completa pero simplificada**: muestra las 22
-clases del dominio y todas sus relaciones reales, pero cada caja solo lista sus atributos mas
-identificativos (sin metodos ni etiquetas de multiplicidad) para que se lea de un vistazo. El detalle
-completo de cada clase esta en el codigo fuente.
+necesita regenerar la imagen o editarla). Es la version **completa**: las 22 clases del dominio con sus
+atributos (`-` privado, `#` protegido, `+` publico), sus metodos principales, y cada linea de relacion
+rotulada con su tipo exacto (**Herencia**, **Composicion**, **Asociacion** o **Dependencia** — ver
+"Como se clasifico cada relacion" mas abajo).
 
-No se dibujan por separado (son detalle de implementacion, no relaciones del dominio): `Nodo<T>` y
+`MenuCentros` y `MenuLogistica` tienen muchos metodos privados "hoja" que repiten el mismo patron
+(`registrarX`/`buscarX`/`mostrarX`/`eliminarX`, uno por cada opcion de cada submenu); para que el
+diagrama siga siendo legible se muestra solo su metodo publico de entrada y los orquestadores de cada
+submenu (`menuClientes`, `menuBodegas`, etc.). El detalle linea por linea esta en
+`Menus/MenuCentros.h`/`Menus/MenuLogistica.h`.
+
+No se dibujan como clases aparte (son detalle de implementacion, no relaciones del dominio): `Nodo<T>` y
 `ListaEnlazada<T>` (la lista enlazada propia que usan las 7 colecciones del sistema, en vez de STL),
 `Fecha` (usada por `Colaborador`, `RegistroBitacora`, `SolicitudEnvio` y `Despacho`) y `Tarifas`
 (tarifas estaticas por `TipoCategoria`, usadas por `GestionSolicitudes` para calcular el costo).
+
+## Como se clasifico cada relacion
+
+- **Herencia**: `ClientePersona` y `ClienteEmpresa` heredan de `Cliente` (unica relacion `is-a` del
+  sistema).
+- **Composicion** (rombo relleno): la clase contenedora crea el objeto con `new` (o lo tiene como
+  miembro por valor) y lo destruye ella misma (`delete` / `liberarPunteros()` en su destructor); la
+  parte no tiene sentido fuera del todo y nadie mas la referencia como dueno. Asi se relacionan
+  `RedCentros`-`CentroDistribucion`, `CentroDistribucion`-cada `Gestion*`, cada `Gestion*` con su
+  entidad (por ejemplo `GestionClientes`-`Cliente`), `Bodega`-`Celda`, `Paquete`-`RegistroBitacora` y
+  `Menu` con sus cuatro miembros.
+- **Asociacion** (flecha simple): la clase guarda un puntero o referencia a otro objeto como atributo,
+  pero no es su dueno (no lo crea ni lo destruye) — por ejemplo `Paquete` referencia a su `Cliente`
+  propietario y a la `Bodega` donde esta almacenado, o `MenuCentros`/`MenuLogistica` guardan una
+  referencia a `RedCentros`.
+- **Dependencia** (flecha punteada): la clase usa a otra solo de paso, como parametro de alguno de sus
+  metodos, sin guardarla como atributo. Es el caso de `Reportes`, que no posee nada: recibe
+  `RedCentros*`/`CentroDistribucion*`/`Cliente*`/`Colaborador*`/`Paquete*` solo para construir el texto
+  de cada reporte.
+- No hay **Agregacion** en este diseño: en el primer intento se habia marcado `Gestion*`-entidad como
+  agregacion, pero revisando el codigo cada `Gestion*` si destruye sus propios objetos en el
+  destructor (`liberarPunteros()`), asi que es Composicion, no Agregacion.
 
 ## Resumen de relaciones por modulo
 
@@ -24,7 +52,8 @@ No se dibujan por separado (son detalle de implementacion, no relaciones del dom
 **Composicion de un centro**
 - `CentroDistribucion` *compone* (posee, crea y destruye) una instancia de cada clase de gestion:
   `GestionClientes`, `GestionColaboradores`, `GestionBodegas`, `GestionPaquetes`, `GestionSolicitudes`,
-  `GestionDespachos`. Cada una administra (agregacion) su propia lista enlazada de 0..* entidades.
+  `GestionDespachos`. Cada una *compone* a su vez su propia lista enlazada de entidades (las crea y las
+  destruye en su destructor).
 
 **Bodegas y paquetes**
 - `Bodega` *compone* su matriz dinamica de `Celda` (filas x columnas, `Celda**`).
@@ -47,5 +76,5 @@ No se dibujan por separado (son detalle de implementacion, no relaciones del dom
 ## Como regenerar la imagen
 
 ```bash
-npx @mermaid-js/mermaid-cli -i DiagramaClases.mmd -o DiagramaClases.svg -b white --width 2200
+npx @mermaid-js/mermaid-cli -i DiagramaClases.mmd -o DiagramaClases.svg -b white --width 3600
 ```

@@ -1,140 +1,339 @@
-%% Diagrama de clases (completo, version simplificada) - Red de Centros
-%% de Distribucion / TicoPack Logistics. Cada clase muestra solo sus
-%% atributos mas identificativos (sin metodos ni etiquetas de relacion)
-%% para que se lea de un vistazo; el codigo fuente tiene el detalle.
+%% Diagrama de clases completo - Red de Centros de Distribucion / TicoPack
+%% Logistics. Incluye atributos, metodos publicos (y los privados mas
+%% relevantes) de cada clase, y el tipo de relacion rotulado en cada
+%% linea (Herencia, Composicion, Agregacion, Asociacion, Dependencia).
+%%
+%% Nota de alcance: MenuCentros y MenuLogistica tienen muchos metodos
+%% privados "hoja" que siguen el mismo patron repetitivo (registrarX,
+%% buscarX, mostrarX, eliminarX, uno por cada opcion del submenu); para
+%% no inflar el diagrama se muestran solo su metodo publico de entrada y
+%% los orquestadores de cada submenu. El detalle linea por linea esta en
+%% el codigo fuente (Menus/MenuCentros.h y Menus/MenuLogistica.h).
+%%
+%% No se dibujan aparte (son detalle de implementacion, no relaciones de
+%% dominio): Nodo<T> y ListaEnlazada<T> (lista enlazada propia, sin STL,
+%% usada por las 7 colecciones), Fecha (usada por Colaborador,
+%% RegistroBitacora, SolicitudEnvio y Despacho) y Tarifas (tarifas
+%% estaticas por TipoCategoria, usadas por GestionSolicitudes).
 classDiagram
     direction LR
 
-    class RedCentros {
-        -centros
+    class Menu {
+        -red : RedCentros
+        -reportes : Reportes
+        -menuCentros : MenuCentros
+        -menuLogistica : MenuLogistica
+        +menuPrincipal()
+        -menuReportes()
     }
+    class MenuCentros {
+        -red : RedCentros&
+        +menu()
+        -menuClientes(CentroDistribucion*)
+        -menuColaboradores(CentroDistribucion*)
+    }
+    class MenuLogistica {
+        -red : RedCentros&
+        +menuGeneral()
+        -menuBodegas(CentroDistribucion*)
+        -menuPaquetes(CentroDistribucion*)
+        -menuSolicitudes(CentroDistribucion*)
+        -menuDespachos(CentroDistribucion*)
+    }
+
+    class Reportes {
+        +historialCliente(CentroDistribucion*, Cliente*) string
+        +clientesPorCantidadEnvios(CentroDistribucion*) string
+        +bitacoraPaquete(Paquete*) string
+        +consultaDespachoPaquete(CentroDistribucion*, Paquete*) string
+        +ocupacionBodegas(RedCentros*) string
+        +despachosPorColaborador(CentroDistribucion*, Colaborador*) string
+    }
+
+    class RedCentros {
+        -centros : ListaEnlazada~CentroDistribucion*~
+        +existeCodigoCentro(string) bool
+        +buscarCentroPorCodigo(string) CentroDistribucion*
+        +registrarCentro(...) bool
+        +eliminarCentro(string) bool
+        +mostrarListado() string
+        +getCantidad() int
+        +existeCodigoPaqueteGlobal(string) bool
+        +buscarPaqueteGlobal(string) Paquete*
+        +existeCodigoSolicitudGlobal(string) bool
+        +buscarSolicitudGlobal(string) SolicitudEnvio*
+        +existeCodigoDespachoGlobal(string) bool
+        +buscarDespachoGlobal(string) Despacho*
+        +cargarDatosDePrueba()
+    }
+
     class CentroDistribucion {
-        -codigo
-        -nombre
-        -provincia
-        -telefono
+        -codigo : string
+        -nombre : string
+        -provincia : string
+        -direccion : string
+        -telefono : string
+        +getCodigo() string
+        +getNombre() string
+        +getGestionClientes() GestionClientes*
+        +getGestionColaboradores() GestionColaboradores*
+        +getGestionBodegas() GestionBodegas*
+        +getGestionPaquetes() GestionPaquetes*
+        +getGestionSolicitudes() GestionSolicitudes*
+        +getGestionDespachos() GestionDespachos*
+        +tieneDependencias() bool
+        +eliminarCliente(string) bool
+        +eliminarColaborador(string) bool
+        +eliminarPaquete(string) bool
+        +aprobarSolicitud(string, Colaborador*, string, string) bool
+        +mostrarDatos() string
     }
 
     class Cliente {
         <<abstract>>
-        -identificacion
-        -nombre
-        -telefono
-        -correo
+        #identificacion : string
+        #nombre : string
+        #telefono : string
+        #correo : string
+        +getIdentificacion() string
+        +getNombre() string
+        +getTelefono() string
+        +getCorreo() string
+        +aplicarDescuento(double) double
+        +getTipoCliente()* string
+        +mostrar() string
     }
-    class ClientePersona
+    class ClientePersona {
+        +getTipoCliente() string
+    }
     class ClienteEmpresa {
-        -actividadEconomica
-        -porcentajeDescuento
+        -actividadEconomica : string
+        -porcentajeDescuento : double
+        +getActividadEconomica() string
+        +getPorcentajeDescuento() double
+        +aplicarDescuento(double) double
+        +getTipoCliente() string
+        +mostrar() string
     }
     class GestionClientes {
-        -clientes
+        -clientes : ListaEnlazada~Cliente*~
+        +existeIdentificacion(string) bool
+        +buscarPorIdentificacion(string) Cliente*
+        +registrarPersona(...) bool
+        +registrarEmpresa(...) bool
+        +eliminar(string) bool
+        +mostrarListado() string
+        +getCantidad() int
     }
 
     class Colaborador {
-        -identificacion
-        -nombreCompleto
-        -puesto
+        -identificacion : string
+        -nombreCompleto : string
+        -fechaIngreso : Fecha
+        -puesto : string
+        +getIdentificacion() string
+        +getNombreCompleto() string
+        +getFechaIngreso() Fecha
+        +getPuesto() string
+        +mostrar() string
     }
     class GestionColaboradores {
-        -colaboradores
+        -colaboradores : ListaEnlazada~Colaborador*~
+        +existeIdentificacion(string) bool
+        +buscarPorIdentificacion(string) Colaborador*
+        +registrar(...) bool
+        +eliminar(string) bool
+        +mostrarListado() string
+        +getCantidad() int
     }
 
     class Celda {
-        -ocupada
-        -paquete
+        -ocupada : bool
+        -paquete : Paquete*
+        +estaOcupada() bool
+        +getPaquete() Paquete*
+        +asignar(Paquete*) bool
+        +liberar() bool
     }
     class Bodega {
-        -codigo
-        -tipo
-        -filas
-        -columnas
-        -matriz
+        -codigo : string
+        -nombre : string
+        -tipo : TipoCategoria
+        -filas : int
+        -columnas : int
+        -matriz : Celda**
+        +esCompatible(TipoCategoria) bool
+        +existeCelda(int, int) bool
+        +estaLibre(int, int) bool
+        +getCelda(int, int) Celda*
+        +reservarCelda(int, int, Paquete*) bool
+        +liberarCelda(int, int) bool
+        +totalCeldas() int
+        +contarOcupadas() int
+        +contarLibres() int
+        +porcentajeOcupacion() double
+        +porcentajeDisponible() double
+        +todasLasCeldasLibres() bool
+        +formatoCelda(int, int) string
+        +buscarCeldaLibre(int&, int&) bool
+        +mostrarMatriz() string
+        -anchoIndice() int
     }
     class GestionBodegas {
-        -bodegas
+        -bodegas : ListaEnlazada~Bodega*~
+        +existeCodigo(string) bool
+        +buscarPorCodigo(string) Bodega*
+        +registrarBodega(...) bool
+        +eliminar(string) bool
+        +mejorBodegaCompatible(TipoCategoria) Bodega*
+        +mostrarListado() string
+        +getCantidad() int
     }
 
     class RegistroBitacora {
-        -estadoAnterior
-        -estadoNuevo
-        -fecha
-        -responsable
+        -estadoAnterior : EstadoPaquete
+        -estadoNuevo : EstadoPaquete
+        -fecha : Fecha
+        -responsable : Colaborador*
+        +getEstadoAnterior() EstadoPaquete
+        +getEstadoNuevo() EstadoPaquete
+        +getFecha() Fecha
+        +getResponsable() Colaborador*
+        +mostrar() string
     }
     class Paquete {
-        -codigo
-        -descripcion
-        -peso
-        -categoria
-        -estado
+        -codigo : string
+        -descripcion : string
+        -peso : double
+        -categoria : TipoCategoria
+        -estado : EstadoPaquete
+        -estadoPrevioIncidencia : EstadoPaquete
+        -fila : int
+        -columna : int
+        +getCodigo() string
+        +getEstado() EstadoPaquete
+        +getBodegaAsignada() Bodega*
+        +tieneUbicacion() bool
+        +asignarUbicacion(Bodega*, int, int)
+        +liberarUbicacion()
+        +transicionValida(EstadoPaquete, EstadoPaquete)$ bool
+        +cambiarEstado(EstadoPaquete, Colaborador*) bool
+        +reportarIncidencia(Colaborador*) bool
+        +mostrarBitacora() string
+        +mostrar() string
     }
     class GestionPaquetes {
-        -paquetes
+        -paquetes : ListaEnlazada~Paquete*~
+        +existeCodigo(string) bool
+        +buscarPorCodigo(string) Paquete*
+        +registrarPaquete(...) Paquete*
+        +eliminar(string) bool
+        +almacenarPaquete(Paquete*, Bodega*, int, int, Colaborador*) bool
+        +reubicarPaquete(Paquete*, Bodega*, int, int) bool
+        +reportarIncidencia(string, Colaborador*) bool
+        +resolverIncidencia(string, Colaborador*) bool
+        +mostrarListado() string
+        +getCantidad() int
     }
 
     class SolicitudEnvio {
-        -codigo
-        -destino
-        -costoEstimado
-        -estado
+        -codigo : string
+        -destino : string
+        -fechaSolicitud : Fecha
+        -costoEstimado : double
+        -estado : EstadoSolicitud
+        +getCodigo() string
+        +getCostoEstimado() double
+        +getEstado() EstadoSolicitud
+        +cambiarEstado(EstadoSolicitud) bool
+        +mostrar() string
     }
     class GestionSolicitudes {
-        -solicitudes
+        -solicitudes : ListaEnlazada~SolicitudEnvio*~
+        +existeCodigo(string) bool
+        +buscarPorCodigo(string) SolicitudEnvio*
+        +existePendienteParaPaquete(Paquete*) bool
+        +existeAprobadaParaPaquete(Paquete*) bool
+        +crearSolicitud(...) SolicitudEnvio*
+        +rechazar(string) bool
+        +anular(string) bool
+        +mostrarListado() string
+        +getCantidad() int
     }
 
     class Despacho {
-        -codigo
-        -hora
-        -estado
+        -codigo : string
+        -destino : string
+        -fechaDespacho : Fecha
+        -hora : string
+        -estado : EstadoDespacho
+        +getCodigo() string
+        +getEstado() EstadoDespacho
+        +finalizar() bool
+        +mostrar() string
     }
     class GestionDespachos {
-        -despachos
+        -despachos : ListaEnlazada~Despacho*~
+        +existeCodigo(string) bool
+        +buscarPorCodigo(string) Despacho*
+        +existeDespachoParaPaquete(Paquete*) bool
+        +crearDespacho(...) Despacho*
+        +finalizarEntrega(string, Colaborador*) bool
+        +mostrarListado() string
+        +getCantidad() int
     }
 
-    class Reportes
+    %% ===================== Relaciones =====================
 
-    class Menu
-    class MenuCentros
-    class MenuLogistica
+    %% Herencia (generalizacion)
+    Cliente <|-- ClientePersona : Herencia
+    Cliente <|-- ClienteEmpresa : Herencia
 
-    %% ---- Herencia ----
-    Cliente <|-- ClientePersona
-    Cliente <|-- ClienteEmpresa
+    %% Composicion (dueno exclusivo: crea con new y destruye con delete/
+    %% liberarPunteros; la parte no tiene sentido ni vida fuera del todo)
+    Menu *-- RedCentros : Composicion
+    Menu *-- Reportes : Composicion
+    Menu *-- MenuCentros : Composicion
+    Menu *-- MenuLogistica : Composicion
+    RedCentros *-- CentroDistribucion : Composicion
+    CentroDistribucion *-- GestionClientes : Composicion
+    CentroDistribucion *-- GestionColaboradores : Composicion
+    CentroDistribucion *-- GestionBodegas : Composicion
+    CentroDistribucion *-- GestionPaquetes : Composicion
+    CentroDistribucion *-- GestionSolicitudes : Composicion
+    CentroDistribucion *-- GestionDespachos : Composicion
+    GestionClientes *-- Cliente : Composicion
+    GestionColaboradores *-- Colaborador : Composicion
+    GestionBodegas *-- Bodega : Composicion
+    GestionPaquetes *-- Paquete : Composicion
+    GestionSolicitudes *-- SolicitudEnvio : Composicion
+    GestionDespachos *-- Despacho : Composicion
+    Bodega *-- Celda : Composicion
+    Paquete *-- RegistroBitacora : Composicion
 
-    %% ---- Composicion (el todo crea y destruye a la parte) ----
-    RedCentros *-- CentroDistribucion
-    CentroDistribucion *-- GestionClientes
-    CentroDistribucion *-- GestionColaboradores
-    CentroDistribucion *-- GestionBodegas
-    CentroDistribucion *-- GestionPaquetes
-    CentroDistribucion *-- GestionSolicitudes
-    CentroDistribucion *-- GestionDespachos
-    Bodega *-- Celda
-    Paquete *-- RegistroBitacora
-    Menu *-- RedCentros
-    Menu *-- Reportes
-    Menu *-- MenuCentros
-    Menu *-- MenuLogistica
+    %% Asociacion (referencia guardada como atributo, pero NO es dueno:
+    %% no crea ni destruye al objeto referenciado)
+    Celda --> Paquete : Asociacion
+    Paquete --> Cliente : Asociacion
+    Paquete --> CentroDistribucion : Asociacion
+    Paquete --> Bodega : Asociacion
+    RegistroBitacora --> Colaborador : Asociacion
+    SolicitudEnvio --> Cliente : Asociacion
+    SolicitudEnvio --> Paquete : Asociacion
+    SolicitudEnvio --> Colaborador : Asociacion
+    SolicitudEnvio --> CentroDistribucion : Asociacion
+    Despacho --> SolicitudEnvio : Asociacion
+    Despacho --> Paquete : Asociacion
+    Despacho --> Cliente : Asociacion
+    Despacho --> Colaborador : Asociacion
+    Despacho --> CentroDistribucion : Asociacion
+    MenuCentros --> RedCentros : Asociacion
+    MenuLogistica --> RedCentros : Asociacion
 
-    %% ---- Agregacion (administra una coleccion de, sin ser el creador conceptual) ----
-    GestionClientes o-- Cliente
-    GestionColaboradores o-- Colaborador
-    GestionBodegas o-- Bodega
-    GestionPaquetes o-- Paquete
-    GestionSolicitudes o-- SolicitudEnvio
-    GestionDespachos o-- Despacho
-
-    %% ---- Asociacion / dependencia (solo referencia, no es dueno) ----
-    Celda --> Paquete
-    Paquete --> Cliente
-    Paquete --> Bodega
-    RegistroBitacora --> Colaborador
-    SolicitudEnvio --> Paquete
-    SolicitudEnvio --> Cliente
-    SolicitudEnvio --> Colaborador
-    Despacho --> SolicitudEnvio
-    Despacho --> Paquete
-    Despacho --> Colaborador
-    Reportes --> RedCentros
-    MenuCentros --> RedCentros
-    MenuLogistica --> RedCentros
+    %% Dependencia (solo la usa de paso, como parametro de sus metodos;
+    %% no la guarda como atributo)
+    Reportes ..> RedCentros : Dependencia
+    Reportes ..> CentroDistribucion : Dependencia
+    Reportes ..> Cliente : Dependencia
+    Reportes ..> Colaborador : Dependencia
+    Reportes ..> Paquete : Dependencia
