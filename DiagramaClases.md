@@ -1,8 +1,14 @@
 # Diagrama de clases — Red de Centros de Distribucion
 
-El diagrama esta en [`DiagramaClases.svg`](DiagramaClases.svg) (imagen renderizada) y en
-[`DiagramaClases.mmd`](DiagramaClases.mmd) (fuente, formato [Mermaid](https://mermaid.live), por si se
-necesita regenerar la imagen o editarla). Es la version **completa**: las 22 clases del dominio con sus
+El diagrama esta en tres formatos:
+- [`DiagramaClases.svg`](DiagramaClases.svg): imagen ya renderizada, lista para ver o imprimir.
+- [`DiagramaClases.mmd`](DiagramaClases.mmd): fuente en formato [Mermaid](https://mermaid.live), por si
+  se necesita regenerar la imagen o editarla como texto.
+- [`DiagramaClases.drawio`](DiagramaClases.drawio): el mismo diagrama en formato nativo de
+  [draw.io / diagrams.net](https://app.diagrams.net) — abrirlo ahi con **Archivo > Abrir** (o arrastrarlo
+  a la ventana del navegador) para editarlo graficamente, mover cajas o exportarlo a PNG/PDF.
+
+Es la version **completa**: las 22 clases del dominio con sus
 atributos (`-` privado, `#` protegido, `+` publico), sus metodos principales, y cada linea de relacion
 rotulada con su tipo exacto (**Herencia**, **Composicion**, **Asociacion** o **Dependencia** — ver
 "Como se clasifico cada relacion" mas abajo).

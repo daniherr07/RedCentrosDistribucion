@@ -1,0 +1,335 @@
+<mxfile host="app.diagrams.net" agent="claude" version="24.0.0">
+  <diagram name="Diagrama de Clases" id="redcentros-diagrama-clases">
+    <mxGraphModel dx="2000" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="2400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="id100" value="Menu" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="760" y="40" width="280" height="158" as="geometry" />
+        </mxCell>
+        <mxCell id="id101" value="- red : RedCentros&#10;- reportes : Reportes&#10;- menuCentros : MenuCentros&#10;- menuLogistica : MenuLogistica" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id100">
+          <mxGeometry y="30" width="280" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="id102" value="+ menuPrincipal()&#10;- menuReportes()" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id100">
+          <mxGeometry y="112" width="280" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="id103" value="MenuCentros" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="40" width="280" height="122" as="geometry" />
+        </mxCell>
+        <mxCell id="id104" value="- red : RedCentros&amp;" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id103">
+          <mxGeometry y="30" width="280" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="id105" value="+ menu()&#10;- menuClientes(CentroDistribucion*)&#10;- menuColaboradores(CentroDistribucion*)" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id103">
+          <mxGeometry y="58" width="280" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="id106" value="MenuLogistica" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="40" width="280" height="158" as="geometry" />
+        </mxCell>
+        <mxCell id="id107" value="- red : RedCentros&amp;" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id106">
+          <mxGeometry y="30" width="280" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="id108" value="+ menuGeneral()&#10;- menuBodegas(...)&#10;- menuPaquetes(...)&#10;- menuSolicitudes(...)&#10;- menuDespachos(...)" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id106">
+          <mxGeometry y="58" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="id109" value="Reportes" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="280" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="id110" value=" " style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id109">
+          <mxGeometry y="30" width="280" height="4" as="geometry" />
+        </mxCell>
+        <mxCell id="id111" value="+ historialCliente(CentroDistribucion*, Cliente*) string&#10;+ clientesPorCantidadEnvios(CentroDistribucion*) string&#10;+ bitacoraPaquete(Paquete*) string&#10;+ consultaDespachoPaquete(CentroDistribucion*, Paquete*) string&#10;+ ocupacionBodegas(RedCentros*) string&#10;+ despachosPorColaborador(CentroDistribucion*, Colaborador*) string" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id109">
+          <mxGeometry y="34" width="280" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="id112" value="RedCentros" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="960" y="280" width="280" height="302" as="geometry" />
+        </mxCell>
+        <mxCell id="id113" value="- centros : ListaEnlazada&lt;CentroDistribucion*&gt;" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id112">
+          <mxGeometry y="30" width="280" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="id114" value="+ existeCodigoCentro(string) bool&#10;+ buscarCentroPorCodigo(string) CentroDistribucion*&#10;+ registrarCentro(...) bool&#10;+ eliminarCentro(string) bool&#10;+ mostrarListado() string&#10;+ getCantidad() int&#10;+ existeCodigoPaqueteGlobal(string) bool&#10;+ buscarPaqueteGlobal(string) Paquete*&#10;+ existeCodigoSolicitudGlobal(string) bool&#10;+ buscarSolicitudGlobal(string) SolicitudEnvio*&#10;+ existeCodigoDespachoGlobal(string) bool&#10;+ buscarDespachoGlobal(string) Despacho*&#10;+ cargarDatosDePrueba()" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id112">
+          <mxGeometry y="58" width="280" height="244" as="geometry" />
+        </mxCell>
+        <mxCell id="id115" value="CentroDistribucion" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="960" y="620" width="280" height="392" as="geometry" />
+        </mxCell>
+        <mxCell id="id116" value="- codigo : string&#10;- nombre : string&#10;- provincia : string&#10;- direccion : string&#10;- telefono : string" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id115">
+          <mxGeometry y="30" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="id117" value="+ getCodigo() string&#10;+ getNombre() string&#10;+ getGestionClientes() GestionClientes*&#10;+ getGestionColaboradores() GestionColaboradores*&#10;+ getGestionBodegas() GestionBodegas*&#10;+ getGestionPaquetes() GestionPaquetes*&#10;+ getGestionSolicitudes() GestionSolicitudes*&#10;+ getGestionDespachos() GestionDespachos*&#10;+ tieneDependencias() bool&#10;+ eliminarCliente(string) bool&#10;+ eliminarColaborador(string) bool&#10;+ eliminarPaquete(string) bool&#10;+ aprobarSolicitud(string, Colaborador*, string, string) bool&#10;+ mostrarDatos() string" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id115">
+          <mxGeometry y="130" width="280" height="262" as="geometry" />
+        </mxCell>
+        <mxCell id="id118" value="«abstract»
+Cliente" style="swimlane;fontStyle=3;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1360" width="280" height="248" as="geometry" />
+        </mxCell>
+        <mxCell id="id119" value="# identificacion : string&#10;# nombre : string&#10;# telefono : string&#10;# correo : string" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id118">
+          <mxGeometry y="30" width="280" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="id120" value="+ getIdentificacion() string&#10;+ getNombre() string&#10;+ getTelefono() string&#10;+ getCorreo() string&#10;+ aplicarDescuento(double) double&#10;+ getTipoCliente() string {abstract}&#10;+ mostrar() string" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id118">
+          <mxGeometry y="112" width="280" height="136" as="geometry" />
+        </mxCell>
+        <mxCell id="id121" value="ClientePersona" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1900" width="280" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="id122" value=" " style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id121">
+          <mxGeometry y="30" width="280" height="4" as="geometry" />
+        </mxCell>
+        <mxCell id="id123" value="+ getTipoCliente() string" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id121">
+          <mxGeometry y="34" width="280" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="id124" value="ClienteEmpresa" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1900" width="280" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="id125" value="- actividadEconomica : string&#10;- porcentajeDescuento : double" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id124">
+          <mxGeometry y="30" width="280" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="id126" value="+ getActividadEconomica() string&#10;+ getPorcentajeDescuento() double&#10;+ aplicarDescuento(double) double&#10;+ getTipoCliente() string&#10;+ mostrar() string" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id124">
+          <mxGeometry y="76" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="id127" value="GestionClientes" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1040" width="280" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="id128" value="- clientes : ListaEnlazada&lt;Cliente*&gt;" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id127">
+          <mxGeometry y="30" width="280" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="id129" value="+ existeIdentificacion(string) bool&#10;+ buscarPorIdentificacion(string) Cliente*&#10;+ registrarPersona(...) bool&#10;+ registrarEmpresa(...) bool&#10;+ eliminar(string) bool&#10;+ mostrarListado() string&#10;+ getCantidad() int" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id127">
+          <mxGeometry y="58" width="280" height="136" as="geometry" />
+        </mxCell>
+        <mxCell id="id130" value="Colaborador" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1840" y="1360" width="280" height="212" as="geometry" />
+        </mxCell>
+        <mxCell id="id131" value="- identificacion : string&#10;- nombreCompleto : string&#10;- fechaIngreso : Fecha&#10;- puesto : string" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id130">
+          <mxGeometry y="30" width="280" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="id132" value="+ getIdentificacion() string&#10;+ getNombreCompleto() string&#10;+ getFechaIngreso() Fecha&#10;+ getPuesto() string&#10;+ mostrar() string" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id130">
+          <mxGeometry y="112" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="id133" value="GestionColaboradores" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1840" y="1040" width="280" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="id134" value="- colaboradores : ListaEnlazada&lt;Colaborador*&gt;" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id133">
+          <mxGeometry y="30" width="280" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="id135" value="+ existeIdentificacion(string) bool&#10;+ buscarPorIdentificacion(string) Colaborador*&#10;+ registrar(...) bool&#10;+ eliminar(string) bool&#10;+ mostrarListado() string&#10;+ getCantidad() int" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id133">
+          <mxGeometry y="58" width="280" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="id136" value="Bodega" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1360" width="280" height="446" as="geometry" />
+        </mxCell>
+        <mxCell id="id137" value="- codigo : string&#10;- nombre : string&#10;- tipo : TipoCategoria&#10;- filas : int&#10;- columnas : int&#10;- matriz : Celda**" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id136">
+          <mxGeometry y="30" width="280" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="id138" value="+ esCompatible(TipoCategoria) bool&#10;+ existeCelda(int, int) bool&#10;+ estaLibre(int, int) bool&#10;+ getCelda(int, int) Celda*&#10;+ reservarCelda(int, int, Paquete*) bool&#10;+ liberarCelda(int, int) bool&#10;+ totalCeldas() int&#10;+ contarOcupadas() int&#10;+ contarLibres() int&#10;+ porcentajeOcupacion() double&#10;+ porcentajeDisponible() double&#10;+ todasLasCeldasLibres() bool&#10;+ formatoCelda(int, int) string&#10;+ buscarCeldaLibre(int&amp;, int&amp;) bool&#10;+ mostrarMatriz() string&#10;- anchoIndice() int" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id136">
+          <mxGeometry y="148" width="280" height="298" as="geometry" />
+        </mxCell>
+        <mxCell id="id139" value="Celda" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1900" width="280" height="158" as="geometry" />
+        </mxCell>
+        <mxCell id="id140" value="- ocupada : bool&#10;- paquete : Paquete*" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id139">
+          <mxGeometry y="30" width="280" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="id141" value="+ estaOcupada() bool&#10;+ getPaquete() Paquete*&#10;+ asignar(Paquete*) bool&#10;+ liberar() bool" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id139">
+          <mxGeometry y="76" width="280" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="id142" value="GestionBodegas" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1040" width="280" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="id143" value="- bodegas : ListaEnlazada&lt;Bodega*&gt;" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id142">
+          <mxGeometry y="30" width="280" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="id144" value="+ existeCodigo(string) bool&#10;+ buscarPorCodigo(string) Bodega*&#10;+ registrarBodega(...) bool&#10;+ eliminar(string) bool&#10;+ mejorBodegaCompatible(TipoCategoria) Bodega*&#10;+ mostrarListado() string&#10;+ getCantidad() int" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id142">
+          <mxGeometry y="58" width="280" height="136" as="geometry" />
+        </mxCell>
+        <mxCell id="id145" value="Paquete" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1360" width="280" height="392" as="geometry" />
+        </mxCell>
+        <mxCell id="id146" value="- codigo : string&#10;- descripcion : string&#10;- peso : double&#10;- categoria : TipoCategoria&#10;- estado : EstadoPaquete&#10;- estadoPrevioIncidencia : EstadoPaquete&#10;- fila : int&#10;- columna : int" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id145">
+          <mxGeometry y="30" width="280" height="154" as="geometry" />
+        </mxCell>
+        <mxCell id="id147" value="+ getCodigo() string&#10;+ getEstado() EstadoPaquete&#10;+ getBodegaAsignada() Bodega*&#10;+ tieneUbicacion() bool&#10;+ asignarUbicacion(Bodega*, int, int)&#10;+ liberarUbicacion()&#10;+S transicionValida(EstadoPaquete, EstadoPaquete) bool&#10;+ cambiarEstado(EstadoPaquete, Colaborador*) bool&#10;+ reportarIncidencia(Colaborador*) bool&#10;+ mostrarBitacora() string&#10;+ mostrar() string" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id145">
+          <mxGeometry y="184" width="280" height="208" as="geometry" />
+        </mxCell>
+        <mxCell id="id148" value="RegistroBitacora" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1900" width="280" height="212" as="geometry" />
+        </mxCell>
+        <mxCell id="id149" value="- estadoAnterior : EstadoPaquete&#10;- estadoNuevo : EstadoPaquete&#10;- fecha : Fecha&#10;- responsable : Colaborador*" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id148">
+          <mxGeometry y="30" width="280" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="id150" value="+ getEstadoAnterior() EstadoPaquete&#10;+ getEstadoNuevo() EstadoPaquete&#10;+ getFecha() Fecha&#10;+ getResponsable() Colaborador*&#10;+ mostrar() string" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id148">
+          <mxGeometry y="112" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="id151" value="GestionPaquetes" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1040" width="280" height="248" as="geometry" />
+        </mxCell>
+        <mxCell id="id152" value="- paquetes : ListaEnlazada&lt;Paquete*&gt;" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id151">
+          <mxGeometry y="30" width="280" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="id153" value="+ existeCodigo(string) bool&#10;+ buscarPorCodigo(string) Paquete*&#10;+ registrarPaquete(...) Paquete*&#10;+ eliminar(string) bool&#10;+ almacenarPaquete(Paquete*, Bodega*, int, int, Colaborador*) bool&#10;+ reubicarPaquete(Paquete*, Bodega*, int, int) bool&#10;+ reportarIncidencia(string, Colaborador*) bool&#10;+ resolverIncidencia(string, Colaborador*) bool&#10;+ mostrarListado() string&#10;+ getCantidad() int" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id151">
+          <mxGeometry y="58" width="280" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="id154" value="SolicitudEnvio" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="1360" width="280" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="id155" value="- codigo : string&#10;- destino : string&#10;- fechaSolicitud : Fecha&#10;- costoEstimado : double&#10;- estado : EstadoSolicitud" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id154">
+          <mxGeometry y="30" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="id156" value="+ getCodigo() string&#10;+ getCostoEstimado() double&#10;+ getEstado() EstadoSolicitud&#10;+ cambiarEstado(EstadoSolicitud) bool&#10;+ mostrar() string" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id154">
+          <mxGeometry y="130" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="id157" value="GestionSolicitudes" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="1040" width="280" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="id158" value="- solicitudes : ListaEnlazada&lt;SolicitudEnvio*&gt;" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id157">
+          <mxGeometry y="30" width="280" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="id159" value="+ existeCodigo(string) bool&#10;+ buscarPorCodigo(string) SolicitudEnvio*&#10;+ existePendienteParaPaquete(Paquete*) bool&#10;+ existeAprobadaParaPaquete(Paquete*) bool&#10;+ crearSolicitud(...) SolicitudEnvio*&#10;+ rechazar(string) bool&#10;+ anular(string) bool&#10;+ mostrarListado() string&#10;+ getCantidad() int" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id157">
+          <mxGeometry y="58" width="280" height="172" as="geometry" />
+        </mxCell>
+        <mxCell id="id160" value="Despacho" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="1360" width="280" height="212" as="geometry" />
+        </mxCell>
+        <mxCell id="id161" value="- codigo : string&#10;- destino : string&#10;- fechaDespacho : Fecha&#10;- hora : string&#10;- estado : EstadoDespacho" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id160">
+          <mxGeometry y="30" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="id162" value="+ getCodigo() string&#10;+ getEstado() EstadoDespacho&#10;+ finalizar() bool&#10;+ mostrar() string" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id160">
+          <mxGeometry y="130" width="280" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="id163" value="GestionDespachos" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="1040" width="280" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="id164" value="- despachos : ListaEnlazada&lt;Despacho*&gt;" style="text;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id163">
+          <mxGeometry y="30" width="280" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="id165" value="+ existeCodigo(string) bool&#10;+ buscarPorCodigo(string) Despacho*&#10;+ existeDespachoParaPaquete(Paquete*) bool&#10;+ crearDespacho(...) Despacho*&#10;+ finalizarEntrega(string, Colaborador*) bool&#10;+ mostrarListado() string&#10;+ getCantidad() int" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=top;spacingTop=4;spacingLeft=6;spacingRight=4;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="id163">
+          <mxGeometry y="58" width="280" height="136" as="geometry" />
+        </mxCell>
+        <mxCell id="id166" value="Herencia" style="endArrow=block;endFill=0;endSize=16;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id118" target="id121">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id167" value="Herencia" style="endArrow=block;endFill=0;endSize=16;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id118" target="id124">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id168" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id100" target="id112">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id169" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id100" target="id109">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id170" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id100" target="id103">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id171" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id100" target="id106">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id172" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id112" target="id115">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id173" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id115" target="id127">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id174" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id115" target="id133">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id175" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id115" target="id142">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id176" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id115" target="id151">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id177" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id115" target="id157">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id178" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id115" target="id163">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id179" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id127" target="id118">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id180" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id133" target="id130">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id181" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id142" target="id136">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id182" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id151" target="id145">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id183" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id157" target="id154">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id184" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id163" target="id160">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id185" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id136" target="id139">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id186" value="Composicion" style="startArrow=diamondThin;startFill=1;startSize=18;endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#000000;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id145" target="id148">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id187" value="Asociacion" style="endArrow=open;endFill=1;endSize=10;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id139" target="id145">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id188" value="Asociacion" style="endArrow=open;endFill=1;endSize=10;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id145" target="id118">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id189" value="Asociacion" style="endArrow=open;endFill=1;endSize=10;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id145" target="id115">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id190" value="Asociacion" style="endArrow=open;endFill=1;endSize=10;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id145" target="id136">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id191" value="Asociacion" style="endArrow=open;endFill=1;endSize=10;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id148" target="id130">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id192" value="Asociacion" style="endArrow=open;endFill=1;endSize=10;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id154" target="id118">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id193" value="Asociacion" style="endArrow=open;endFill=1;endSize=10;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id154" target="id145">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id194" value="Asociacion" style="endArrow=open;endFill=1;endSize=10;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id154" target="id130">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id195" value="Asociacion" style="endArrow=open;endFill=1;endSize=10;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id154" target="id115">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id196" value="Asociacion" style="endArrow=open;endFill=1;endSize=10;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id160" target="id154">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id197" value="Asociacion" style="endArrow=open;endFill=1;endSize=10;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id160" target="id145">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id198" value="Asociacion" style="endArrow=open;endFill=1;endSize=10;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id160" target="id118">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id199" value="Asociacion" style="endArrow=open;endFill=1;endSize=10;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id160" target="id130">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id200" value="Asociacion" style="endArrow=open;endFill=1;endSize=10;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id160" target="id115">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id201" value="Asociacion" style="endArrow=open;endFill=1;endSize=10;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id103" target="id112">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id202" value="Asociacion" style="endArrow=open;endFill=1;endSize=10;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#333333;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id106" target="id112">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id203" value="Dependencia" style="endArrow=open;endFill=1;endSize=10;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#666666;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id109" target="id112">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id204" value="Dependencia" style="endArrow=open;endFill=1;endSize=10;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#666666;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id109" target="id115">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id205" value="Dependencia" style="endArrow=open;endFill=1;endSize=10;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#666666;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id109" target="id118">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id206" value="Dependencia" style="endArrow=open;endFill=1;endSize=10;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#666666;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id109" target="id130">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="id207" value="Dependencia" style="endArrow=open;endFill=1;endSize=10;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#666666;fontSize=10;fontColor=#555555;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="id109" target="id145">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
