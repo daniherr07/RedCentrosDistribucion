@@ -291,44 +291,45 @@ classDiagram
 
     %% Composicion (dueno exclusivo: crea con new y destruye con delete/
     %% liberarPunteros; la parte no tiene sentido ni vida fuera del todo)
-    Menu *-- RedCentros : Composicion
-    Menu *-- Reportes : Composicion
-    Menu *-- MenuCentros : Composicion
-    Menu *-- MenuLogistica : Composicion
-    RedCentros *-- CentroDistribucion : Composicion
-    CentroDistribucion *-- GestionClientes : Composicion
-    CentroDistribucion *-- GestionColaboradores : Composicion
-    CentroDistribucion *-- GestionBodegas : Composicion
-    CentroDistribucion *-- GestionPaquetes : Composicion
-    CentroDistribucion *-- GestionSolicitudes : Composicion
-    CentroDistribucion *-- GestionDespachos : Composicion
-    GestionClientes *-- Cliente : Composicion
-    GestionColaboradores *-- Colaborador : Composicion
-    GestionBodegas *-- Bodega : Composicion
-    GestionPaquetes *-- Paquete : Composicion
-    GestionSolicitudes *-- SolicitudEnvio : Composicion
-    GestionDespachos *-- Despacho : Composicion
-    Bodega *-- Celda : Composicion
-    Paquete *-- RegistroBitacora : Composicion
+    %% Multiplicidad: "1" junto al todo, "1" o "0..*"/"1..*" junto a la parte.
+    Menu "1" *-- "1" RedCentros : Composicion
+    Menu "1" *-- "1" Reportes : Composicion
+    Menu "1" *-- "1" MenuCentros : Composicion
+    Menu "1" *-- "1" MenuLogistica : Composicion
+    RedCentros "1" *-- "0..*" CentroDistribucion : Composicion
+    CentroDistribucion "1" *-- "1" GestionClientes : Composicion
+    CentroDistribucion "1" *-- "1" GestionColaboradores : Composicion
+    CentroDistribucion "1" *-- "1" GestionBodegas : Composicion
+    CentroDistribucion "1" *-- "1" GestionPaquetes : Composicion
+    CentroDistribucion "1" *-- "1" GestionSolicitudes : Composicion
+    CentroDistribucion "1" *-- "1" GestionDespachos : Composicion
+    GestionClientes "1" *-- "0..*" Cliente : Composicion
+    GestionColaboradores "1" *-- "0..*" Colaborador : Composicion
+    GestionBodegas "1" *-- "0..*" Bodega : Composicion
+    GestionPaquetes "1" *-- "0..*" Paquete : Composicion
+    GestionSolicitudes "1" *-- "0..*" SolicitudEnvio : Composicion
+    GestionDespachos "1" *-- "0..*" Despacho : Composicion
+    Bodega "1" *-- "1..*" Celda : Composicion
+    Paquete "1" *-- "0..*" RegistroBitacora : Composicion
 
     %% Asociacion (referencia guardada como atributo, pero NO es dueno:
     %% no crea ni destruye al objeto referenciado)
-    Celda --> Paquete : Asociacion
-    Paquete --> Cliente : Asociacion
-    Paquete --> CentroDistribucion : Asociacion
-    Paquete --> Bodega : Asociacion
-    RegistroBitacora --> Colaborador : Asociacion
-    SolicitudEnvio --> Cliente : Asociacion
-    SolicitudEnvio --> Paquete : Asociacion
-    SolicitudEnvio --> Colaborador : Asociacion
-    SolicitudEnvio --> CentroDistribucion : Asociacion
-    Despacho --> SolicitudEnvio : Asociacion
-    Despacho --> Paquete : Asociacion
-    Despacho --> Cliente : Asociacion
-    Despacho --> Colaborador : Asociacion
-    Despacho --> CentroDistribucion : Asociacion
-    MenuCentros --> RedCentros : Asociacion
-    MenuLogistica --> RedCentros : Asociacion
+    Celda "0..1" --> "0..1" Paquete : Asociacion
+    Paquete "0..*" --> "1" Cliente : Asociacion
+    Paquete "0..*" --> "1" CentroDistribucion : Asociacion
+    Paquete "0..*" --> "0..1" Bodega : Asociacion
+    RegistroBitacora "0..*" --> "1" Colaborador : Asociacion
+    SolicitudEnvio "0..*" --> "1" Cliente : Asociacion
+    SolicitudEnvio "0..*" --> "1" Paquete : Asociacion
+    SolicitudEnvio "0..*" --> "1" Colaborador : Asociacion
+    SolicitudEnvio "0..*" --> "1" CentroDistribucion : Asociacion
+    Despacho "0..1" --> "1" SolicitudEnvio : Asociacion
+    Despacho "0..1" --> "1" Paquete : Asociacion
+    Despacho "0..*" --> "1" Cliente : Asociacion
+    Despacho "0..*" --> "1" Colaborador : Asociacion
+    Despacho "0..*" --> "1" CentroDistribucion : Asociacion
+    MenuCentros "1" --> "1" RedCentros : Asociacion
+    MenuLogistica "1" --> "1" RedCentros : Asociacion
 
     %% Dependencia (solo la usa de paso, como parametro de sus metodos;
     %% no la guarda como atributo)
