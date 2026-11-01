@@ -7,9 +7,6 @@ class Cliente;
 class Colaborador;
 class Paquete;
 
-// No es dueno de nada: solo recibe punteros (centro, cliente, paquete,
-// colaborador, o la red completa) y arma los 6 reportes pedidos devolviendo
-// siempre un std::string (quien llama decide cuando imprimirlo).
 class Reportes
 {
 public:

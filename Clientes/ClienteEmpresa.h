@@ -1,9 +1,6 @@
 #pragma once
 #include "Cliente.h"
 
-// Cliente empresa: agrega actividad economica y el porcentaje de
-// descuento autorizado (0-100), y sobreescribe aplicarDescuento() para
-// que el costo de sus solicitudes de envio se calcule con ese porcentaje.
 class ClienteEmpresa : public Cliente
 {
 private:

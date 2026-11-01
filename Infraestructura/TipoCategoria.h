@@ -1,11 +1,6 @@
 #pragma once
 #include <string>
 
-// Un solo enum representa a la vez la categoria de un Paquete y el tipo de
-// una Bodega. Al compartir el mismo tipo, la "compatibilidad directa" que
-// pide el enunciado (General-General, Fragil-Fragil, etc.) se reduce a una
-// simple comparacion de igualdad (ver Bodega::esCompatible), en vez de
-// mantener dos enums distintos con una tabla de equivalencias aparte.
 enum class TipoCategoria
 {
 	GENERAL = 1,

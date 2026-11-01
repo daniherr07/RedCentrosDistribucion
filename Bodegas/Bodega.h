@@ -5,10 +5,6 @@
 
 class Paquete;
 
-// Cada bodega reserva dinamicamente su propia matriz de celdas (filas x
-// columnas, definidas por el usuario al crearla). Celda** es un arreglo
-// de punteros a fila, y cada fila es a su vez un arreglo de Celda -> es
-// la "matriz bidimensional dinamica" que pide el enunciado.
 class Bodega
 {
 private:
@@ -19,11 +15,11 @@ private:
 	int columnas;
 	Celda** matriz;
 
-	int anchoIndice() const; //cuantos digitos usar para fila/columna en el id de celda (A-00, A-12, etc)
+	int anchoIndice() const;
 
 public:
 	Bodega(std::string codigoNuevo, std::string nombreNuevo, TipoCategoria tipoNuevo, int filasNuevas, int columnasNuevas);
-	~Bodega(); //Libera la matriz (cada fila y luego el arreglo de filas)
+	~Bodega();
 
 	std::string getCodigo() const;
 	std::string getNombre() const;
@@ -31,8 +27,8 @@ public:
 	int getFilas() const;
 	int getColumnas() const;
 
-	bool esCompatible(TipoCategoria categoria) const; //Compatibilidad directa: mismo tipo que la categoria del paquete
-	bool existeCelda(int fila, int columna) const; //Solo valida rango
+	bool esCompatible(TipoCategoria categoria) const;
+	bool existeCelda(int fila, int columna) const;
 	bool estaLibre(int fila, int columna) const;
 	Celda* getCelda(int fila, int columna) const;
 
@@ -44,9 +40,9 @@ public:
 	int contarLibres() const;
 	double porcentajeOcupacion() const;
 	double porcentajeDisponible() const;
-	bool todasLasCeldasLibres() const; //Usado para poder eliminar la bodega
+	bool todasLasCeldasLibres() const;
 
-	std::string formatoCelda(int fila, int columna) const; //"CODIGO-FFCC"
-	bool buscarCeldaLibre(int& filaEncontrada, int& columnaEncontrada) const; //Primera libre recorriendo fila por fila
-	std::string mostrarMatriz() const; //Representacion grafica en consola
+	std::string formatoCelda(int fila, int columna) const;
+	bool buscarCeldaLibre(int& filaEncontrada, int& columnaEncontrada) const;
+	std::string mostrarMatriz() const;
 };

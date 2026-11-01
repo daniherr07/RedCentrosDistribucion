@@ -10,9 +10,9 @@ Bodega::Bodega(std::string codigoNuevo, std::string nombreNuevo, TipoCategoria t
 	filas = filasNuevas;
 	columnas = columnasNuevas;
 
-	matriz = new Celda * [filas]; //arreglo de punteros a fila
+	matriz = new Celda * [filas];
 	for (int i = 0; i < filas; i++) {
-		matriz[i] = new Celda[columnas]; //cada fila es un arreglo de Celda, ya libres por el constructor de Celda
+		matriz[i] = new Celda[columnas];
 	}
 }
 
@@ -34,10 +34,10 @@ bool Bodega::esCompatible(TipoCategoria categoria) const {
 }
 
 bool Bodega::existeCelda(int fila, int columna) const {
-	if (fila < 0 || fila >= filas) { //fuera de rango de filas
+	if (fila < 0 || fila >= filas) {
 		return false;
 	}
-	if (columna < 0 || columna >= columnas) { //fuera de rango de columnas
+	if (columna < 0 || columna >= columnas) {
 		return false;
 	}
 	return true;
@@ -110,9 +110,6 @@ bool Bodega::todasLasCeldasLibres() const {
 }
 
 int Bodega::anchoIndice() const {
-	//El enunciado usa 1 digito por indice cuando van de 0 a 9 (A-00, A-12).
-	//Si una bodega tiene 10 o mas filas o columnas, se usan 2 (o mas) digitos
-	//por indice para que fila y columna se sigan distinguiendo con claridad.
 	int maxIndice = (filas - 1 > columnas - 1) ? filas - 1 : columnas - 1;
 	if (maxIndice < 0) {
 		maxIndice = 0;

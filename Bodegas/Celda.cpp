@@ -14,7 +14,7 @@ Paquete* Celda::getPaquete() const {
 }
 
 bool Celda::asignar(Paquete* paqueteNuevo) {
-	if (ocupada) { //Ya hay un paquete aqui, no se puede pisar
+	if (ocupada) {
 		return false;
 	}
 	paquete = paqueteNuevo;
@@ -23,7 +23,7 @@ bool Celda::asignar(Paquete* paqueteNuevo) {
 }
 
 bool Celda::liberar() {
-	if (!ocupada) { //Ya estaba libre, nada que hacer
+	if (!ocupada) {
 		return false;
 	}
 	paquete = nullptr;

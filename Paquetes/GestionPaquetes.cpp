@@ -2,8 +2,6 @@
 #include "CentroDistribucion.h"
 #include <sstream>
 
-//El enunciado exige que el colaborador responsable de un cambio de estado
-//pertenezca al mismo centro de distribucion del paquete (seccion 5).
 static bool perteneceAlCentroDelPaquete(Paquete* paquete, Colaborador* colaborador) {
 	if (colaborador == nullptr) {
 		return false;
@@ -38,13 +36,13 @@ Paquete* GestionPaquetes::registrarPaquete(std::string codigo, std::string descr
 	if (codigo.empty() || descripcion.empty()) {
 		return nullptr;
 	}
-	if (peso <= 0.0) { //el enunciado exige peso mayor que cero
+	if (peso <= 0.0) {
 		return nullptr;
 	}
 	if (clientePropietario == nullptr) {
 		return nullptr;
 	}
-	if (existeCodigo(codigo)) { //ojo: la unicidad real es GLOBAL, RedCentros valida eso antes de llamar aqui
+	if (existeCodigo(codigo)) {
 		return nullptr;
 	}
 
@@ -58,7 +56,7 @@ bool GestionPaquetes::eliminar(std::string codigo) {
 	if (paquete == nullptr) {
 		return false;
 	}
-	if (paquete->getEstado() != EstadoPaquete::RECIBIDO) { //solo se puede eliminar si sigue Recibido
+	if (paquete->getEstado() != EstadoPaquete::RECIBIDO) {
 		return false;
 	}
 	if (paquete->tieneUbicacion()) {
@@ -85,7 +83,7 @@ bool GestionPaquetes::almacenarPaquete(Paquete* paquete, Bodega* bodega, int fil
 	if (!perteneceAlCentroDelPaquete(paquete, responsable)) {
 		return false;
 	}
-	if (!bodega->esCompatible(paquete->getCategoria())) { //compatibilidad directa categoria<->tipo
+	if (!bodega->esCompatible(paquete->getCategoria())) {
 		return false;
 	}
 	if (!bodega->existeCelda(fila, columna) || !bodega->estaLibre(fila, columna)) {
@@ -96,7 +94,7 @@ bool GestionPaquetes::almacenarPaquete(Paquete* paquete, Bodega* bodega, int fil
 	}
 
 	paquete->asignarUbicacion(bodega, fila, columna);
-	paquete->cambiarEstado(EstadoPaquete::ALMACENADO, responsable); //valido en ambos casos de entrada (ver tabla de transiciones)
+	paquete->cambiarEstado(EstadoPaquete::ALMACENADO, responsable);
 	return true;
 }
 
@@ -114,7 +112,6 @@ bool GestionPaquetes::reubicarPaquete(Paquete* paquete, Bodega* nuevaBodega, int
 		return false;
 	}
 
-	//Primero se reserva el destino; solo si eso funciona se libera la celda anterior (orden exigido por el enunciado)
 	if (!nuevaBodega->reservarCelda(nuevaFila, nuevaColumna, paquete)) {
 		return false;
 	}
@@ -150,7 +147,7 @@ bool GestionPaquetes::resolverIncidencia(std::string codigo, Colaborador* respon
 
 	EstadoPaquete previo = paquete->getEstadoPrevioIncidencia();
 	if (previo == EstadoPaquete::RECIBIDO) {
-		return false; //este caso se resuelve almacenando el paquete, no con este metodo
+		return false;
 	}
 	return paquete->cambiarEstado(previo, responsable);
 }

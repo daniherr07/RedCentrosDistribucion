@@ -3,11 +3,6 @@
 #include "CentroDistribucion.h"
 #include "ListaEnlazada.h"
 
-// Clase raiz del sistema: mantiene la lista enlazada de todos los centros
-// de distribucion (la "Red"). Tambien resuelve las busquedas y
-// validaciones de unicidad que son GLOBALES al sistema (paquete,
-// solicitud y despacho se identifican por un codigo unico en toda la red,
-// no solo dentro de un centro), recorriendo los centros uno por uno.
 class RedCentros
 {
 private:
@@ -36,8 +31,5 @@ public:
 	bool existeCodigoDespachoGlobal(std::string codigo) const;
 	Despacho* buscarDespachoGlobal(std::string codigo) const;
 
-	// Carga datos de ejemplo ("quemados") para agilizar las pruebas, tal
-	// como recomienda el enunciado. No reemplaza las opciones de menu
-	// para ingresar datos nuevos, que siguen estando disponibles.
 	void cargarDatosDePrueba();
 };

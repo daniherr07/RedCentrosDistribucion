@@ -1,8 +1,6 @@
 #pragma once
 #include "Cliente.h"
 
-// Cliente persona fisica: no agrega atributos nuevos, solo identifica el
-// tipo de cliente y hereda el comportamiento base (sin descuento).
 class ClientePersona : public Cliente
 {
 public:

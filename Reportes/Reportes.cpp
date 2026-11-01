@@ -79,8 +79,6 @@ std::string Reportes::clientesPorCantidadEnvios(CentroDistribucion* centro) cons
 		d = d->getSiguiente();
 	}
 
-	// Ordenamiento por insercion (propio, sin algoritmos de la STL), estable:
-	// en un empate, los clientes conservan el orden en que ya estaban en la lista.
 	for (int i = 1; i < n; i++) {
 		int conteoActual = conteo[i];
 		Cliente* clienteActual = clientesArr[i];

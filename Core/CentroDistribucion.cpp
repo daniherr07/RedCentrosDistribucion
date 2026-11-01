@@ -56,7 +56,7 @@ bool CentroDistribucion::eliminarCliente(std::string identificacion) {
 	Nodo<Paquete*>* np = paquetes->obtenerLista()->getCabeza();
 	while (np != nullptr) {
 		if (np->getDato()->getClientePropietario() == cliente) {
-			return false; // tiene paquetes asociados
+			return false;
 		}
 		np = np->getSiguiente();
 	}
@@ -64,7 +64,7 @@ bool CentroDistribucion::eliminarCliente(std::string identificacion) {
 	Nodo<SolicitudEnvio*>* ns = solicitudes->obtenerLista()->getCabeza();
 	while (ns != nullptr) {
 		if (ns->getDato()->getCliente() == cliente) {
-			return false; // tiene solicitudes asociadas
+			return false;
 		}
 		ns = ns->getSiguiente();
 	}
@@ -72,7 +72,7 @@ bool CentroDistribucion::eliminarCliente(std::string identificacion) {
 	Nodo<Despacho*>* nd = despachos->obtenerLista()->getCabeza();
 	while (nd != nullptr) {
 		if (nd->getDato()->getCliente() == cliente) {
-			return false; // tiene despachos asociados
+			return false;
 		}
 		nd = nd->getSiguiente();
 	}
@@ -89,7 +89,7 @@ bool CentroDistribucion::eliminarColaborador(std::string identificacion) {
 	Nodo<SolicitudEnvio*>* ns = solicitudes->obtenerLista()->getCabeza();
 	while (ns != nullptr) {
 		if (ns->getDato()->getColaborador() == colaborador) {
-			return false; // es responsable de una solicitud
+			return false;
 		}
 		ns = ns->getSiguiente();
 	}
@@ -97,18 +97,17 @@ bool CentroDistribucion::eliminarColaborador(std::string identificacion) {
 	Nodo<Despacho*>* nd = despachos->obtenerLista()->getCabeza();
 	while (nd != nullptr) {
 		if (nd->getDato()->getColaborador() == colaborador) {
-			return false; // es responsable de un despacho
+			return false;
 		}
 		nd = nd->getSiguiente();
 	}
 
-	// Tambien debe revisarse la bitacora de cada paquete del centro.
 	Nodo<Paquete*>* np = paquetes->obtenerLista()->getCabeza();
 	while (np != nullptr) {
 		Nodo<RegistroBitacora*>* nb = np->getDato()->obtenerBitacora()->getCabeza();
 		while (nb != nullptr) {
 			if (nb->getDato()->getResponsable() == colaborador) {
-				return false; // aparece como responsable en una bitacora
+				return false;
 			}
 			nb = nb->getSiguiente();
 		}
@@ -127,7 +126,7 @@ bool CentroDistribucion::eliminarPaquete(std::string codigoPaquete) {
 	Nodo<SolicitudEnvio*>* ns = solicitudes->obtenerLista()->getCabeza();
 	while (ns != nullptr) {
 		if (ns->getDato()->getPaquete() == paquete) {
-			return false; // tiene solicitudes asociadas
+			return false;
 		}
 		ns = ns->getSiguiente();
 	}
@@ -135,7 +134,7 @@ bool CentroDistribucion::eliminarPaquete(std::string codigoPaquete) {
 	Nodo<Despacho*>* nd = despachos->obtenerLista()->getCabeza();
 	while (nd != nullptr) {
 		if (nd->getDato()->getPaquete() == paquete) {
-			return false; // tiene despachos asociados
+			return false;
 		}
 		nd = nd->getSiguiente();
 	}
@@ -149,7 +148,7 @@ bool CentroDistribucion::aprobarSolicitud(std::string codigoSolicitud, Colaborad
 		return false;
 	}
 	if (colaboradores->buscarPorIdentificacion(responsable->getIdentificacion()) != responsable) {
-		return false; // el responsable debe pertenecer a este centro
+		return false;
 	}
 	if (solicitud->getEstado() != EstadoSolicitud::PENDIENTE) {
 		return false;
@@ -160,7 +159,7 @@ bool CentroDistribucion::aprobarSolicitud(std::string codigoSolicitud, Colaborad
 		return false;
 	}
 	if (despachos->existeDespachoParaPaquete(paquete)) {
-		return false; // ya tiene un despacho (no deberia poder pasar, se valida por consistencia)
+		return false;
 	}
 
 	if (!solicitud->cambiarEstado(EstadoSolicitud::APROBADA)) {

@@ -14,7 +14,6 @@ double ClienteEmpresa::getPorcentajeDescuento() const { return porcentajeDescuen
 
 double ClienteEmpresa::aplicarDescuento(double costoBase) const
 {
-    // costo final = costo base - (costo base * porcentaje de descuento / 100)
     return costoBase - (costoBase * porcentajeDescuento / 100.0);
 }
 

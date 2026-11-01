@@ -1,21 +1,15 @@
 #pragma once
 #include "RedCentros.h"
 
-// Interfaz de consola para "Bodegas y consulta de matrices", "Paquetes"
-// (incluye almacenamiento, reubicacion e incidencias), "Solicitudes de
-// envio" y "Despachos". Igual que en MenuCentros, toda la E/S de estos
-// cuatro grupos vive en esta clase; las clases de dominio solo validan y
-// devuelven resultados.
 class MenuLogistica
 {
 private:
 	RedCentros& red;
 
 	CentroDistribucion* seleccionarCentro();
-	Colaborador* seleccionarColaborador(CentroDistribucion* centro); //pide identificacion y valida que exista en el centro
-	int leerCategoria(); //pide 1-4 hasta que sea valido y lo devuelve
+	Colaborador* seleccionarColaborador(CentroDistribucion* centro);
+	int leerCategoria();
 
-	//--- Bodegas ---
 	void registrarBodega(CentroDistribucion* centro);
 	void buscarBodega(CentroDistribucion* centro);
 	void mostrarBodegas(CentroDistribucion* centro);
@@ -23,28 +17,25 @@ private:
 	void eliminarBodega(CentroDistribucion* centro);
 	void menuBodegas(CentroDistribucion* centro);
 
-	//--- Paquetes ---
 	void registrarPaquete(CentroDistribucion* centro);
-	void buscarPaquete(); //busca por codigo global (seccion 12: paquete se busca por su codigo unico en todo el sistema)
+	void buscarPaquete();
 	void mostrarPaquetes(CentroDistribucion* centro);
-	void eliminarPaquete(); //busca por codigo global (igual que buscar: el paquete se identifica por su codigo unico en todo el sistema)
+	void eliminarPaquete();
 	void almacenarPaquete(CentroDistribucion* centro);
-	void ejecutarAlmacenamiento(CentroDistribucion* centro, Paquete* paquete); //logica compartida: recomendar bodega/celda y guardar
+	void ejecutarAlmacenamiento(CentroDistribucion* centro, Paquete* paquete);
 	void reubicarPaquete(CentroDistribucion* centro);
 	void reportarIncidencia(CentroDistribucion* centro);
 	void resolverIncidencia(CentroDistribucion* centro);
 	void menuPaquetes(CentroDistribucion* centro);
 
-	//--- Solicitudes de envio ---
 	void crearSolicitud(CentroDistribucion* centro);
-	void buscarSolicitud(); //busca por codigo global
+	void buscarSolicitud();
 	void mostrarSolicitudes(CentroDistribucion* centro);
 	void aprobarSolicitud(CentroDistribucion* centro);
 	void rechazarOAnularSolicitud(CentroDistribucion* centro);
 	void menuSolicitudes(CentroDistribucion* centro);
 
-	//--- Despachos ---
-	void buscarDespacho(); //busca por codigo global
+	void buscarDespacho();
 	void mostrarDespachos(CentroDistribucion* centro);
 	void finalizarDespacho(CentroDistribucion* centro);
 	void menuDespachos(CentroDistribucion* centro);
@@ -52,5 +43,5 @@ private:
 public:
 	MenuLogistica(RedCentros& red);
 
-	void menuGeneral(); //entra eligiendo un centro y de ahi deja ir a bodegas/paquetes/solicitudes/despachos
+	void menuGeneral();
 };

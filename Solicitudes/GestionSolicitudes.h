@@ -3,9 +3,6 @@
 #include "SolicitudEnvio.h"
 #include "ListaEnlazada.h"
 
-// Administra, para UN centro de distribucion, la lista enlazada de sus
-// solicitudes de envio. Aqui se calcula el costo (peso * tarifa, con el
-// descuento aplicado via el polimorfismo de Cliente::aplicarDescuento).
 class GestionSolicitudes
 {
 private:

@@ -9,10 +9,6 @@ class Cliente;
 class Colaborador;
 class CentroDistribucion;
 
-// Representa un paquete dentro del sistema. Ademas de sus datos basicos,
-// guarda su bitacora de cambios de estado (lista enlazada propia, nunca
-// se borran registros) y, mientras este Almacenado, la bodega+celda que
-// ocupa.
 class Paquete
 {
 private:
@@ -20,17 +16,17 @@ private:
 	std::string descripcion;
 	double peso;
 	TipoCategoria categoria;
-	Cliente* clientePropietario; //No es dueno, solo referencia
-	CentroDistribucion* centro; //No es dueno, solo referencia
+	Cliente* clientePropietario;
+	CentroDistribucion* centro;
 
 	EstadoPaquete estado;
-	EstadoPaquete estadoPrevioIncidencia; //A que estado volver cuando se resuelva la Incidencia actual
+	EstadoPaquete estadoPrevioIncidencia;
 
-	Bodega* bodegaAsignada; //nullptr si no esta almacenado
+	Bodega* bodegaAsignada;
 	int fila;
 	int columna;
 
-	ListaEnlazada<RegistroBitacora*> bitacora; //El paquete SI es dueno de sus registros de bitacora
+	ListaEnlazada<RegistroBitacora*> bitacora;
 
 public:
 	Paquete(std::string codigo, std::string descripcion, double peso, TipoCategoria categoria,
@@ -56,12 +52,8 @@ public:
 
 	static bool transicionValida(EstadoPaquete origen, EstadoPaquete destino);
 
-	// Valida la transicion contra la tabla de estados y, si es valida,
-	// agrega el registro correspondiente a la bitacora.
 	bool cambiarEstado(EstadoPaquete nuevoEstado, Colaborador* responsable);
 
-	// Pasa el paquete a Incidencia recordando desde que estado venia, para
-	// que GestionPaquetes sepa como resolverla despues.
 	bool reportarIncidencia(Colaborador* responsable);
 
 	std::string mostrarBitacora() const;

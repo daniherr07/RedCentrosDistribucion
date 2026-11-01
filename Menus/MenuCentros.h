@@ -1,10 +1,6 @@
 #pragma once
 #include "RedCentros.h"
 
-// Interfaz de consola para los grupos de opciones "Centros de
-// distribucion", "Clientes" y "Colaboradores". Las entidades y las
-// clases de gestion no leen ni escriben en consola: toda la entrada y
-// salida de este modulo vive aqui.
 class MenuCentros
 {
 private:

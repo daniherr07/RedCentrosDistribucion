@@ -11,9 +11,6 @@ Cliente::Cliente(std::string identificacion, std::string nombre, std::string tel
 
 Cliente::~Cliente()
 {
-    // No hay memoria propia que liberar; el destructor existe (y es
-    // virtual) para que ClientePersona/ClienteEmpresa se destruyan
-    // correctamente a traves de un puntero Cliente*.
 }
 
 std::string Cliente::getIdentificacion() const { return identificacion; }
@@ -23,7 +20,6 @@ std::string Cliente::getCorreo() const { return correo; }
 
 double Cliente::aplicarDescuento(double costoBase) const
 {
-    // Persona fisica: no hay descuento, el costo final es el costo base.
     return costoBase;
 }
 

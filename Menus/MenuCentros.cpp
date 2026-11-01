@@ -94,10 +94,6 @@ void MenuCentros::eliminarCentro()
     std::cout << "listo, centro eliminado\n";
 }
 
-// ---------------------------------------------------------------------
-// Clientes
-// ---------------------------------------------------------------------
-
 void MenuCentros::registrarClientePersona(CentroDistribucion* centro)
 {
     std::cout << "\nRegistrar cliente (persona fisica)\n";
@@ -127,7 +123,7 @@ void MenuCentros::registrarClientePersona(CentroDistribucion* centro)
 void MenuCentros::registrarClienteEmpresa(CentroDistribucion* centro)
 {
     std::cout << "\nRegistrar cliente (empresa)\n";
-    std::cout << "Identificacion (cedula juridica): "; //ojo que la cedula juridica no es la misma que la fisica
+    std::cout << "Identificacion (cedula juridica): ";
     std::string id = leerPalabra();
 
     if (centro->getGestionClientes()->existeIdentificacion(id)) {
@@ -228,10 +224,6 @@ void MenuCentros::menuClientes(CentroDistribucion* centro)
         }
     } while (opcion != 6);
 }
-
-// ---------------------------------------------------------------------
-// Colaboradores
-// ---------------------------------------------------------------------
 
 void MenuCentros::registrarColaborador(CentroDistribucion* centro)
 {

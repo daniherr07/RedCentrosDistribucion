@@ -45,7 +45,7 @@ Despacho* GestionDespachos::crearDespacho(std::string codigo, SolicitudEnvio* so
 	if (codigo.empty() || existeCodigo(codigo)) {
 		return nullptr;
 	}
-	if (existeDespachoParaPaquete(paquete)) { //maximo un despacho por paquete
+	if (existeDespachoParaPaquete(paquete)) {
 		return nullptr;
 	}
 
@@ -68,7 +68,7 @@ bool GestionDespachos::finalizarEntrega(std::string codigo, Colaborador* respons
 	Paquete* paquete = despacho->getPaquete();
 	if (responsableFinalizacion == nullptr
 		|| paquete->getCentro()->getGestionColaboradores()->buscarPorIdentificacion(responsableFinalizacion->getIdentificacion()) != responsableFinalizacion) {
-		return false; // el responsable debe pertenecer al centro del paquete
+		return false;
 	}
 
 	if (!despacho->finalizar()) {

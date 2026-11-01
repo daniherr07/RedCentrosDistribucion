@@ -3,7 +3,7 @@
 #include <iostream>
 
 Menu::Menu() : menuCentros(red), menuLogistica(red) {
-	red.cargarDatosDePrueba(); // datos "quemados" para agilizar pruebas; no reemplaza el ingreso manual
+	red.cargarDatosDePrueba();
 }
 
 CentroDistribucion* Menu::seleccionarCentro() {

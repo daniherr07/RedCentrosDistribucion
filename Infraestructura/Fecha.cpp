@@ -30,6 +30,6 @@ std::string Fecha::mostrar() const {
 Fecha Fecha::hoy() {
 	time_t ahora = time(nullptr);
 	tm local;
-	localtime_s(&local, &ahora); // version seguro de localtime en MSVC
+	localtime_s(&local, &ahora);
 	return Fecha(local.tm_mday, local.tm_mon + 1, local.tm_year + 1900);
 }

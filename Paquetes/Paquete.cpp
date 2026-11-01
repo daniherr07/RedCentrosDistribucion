@@ -2,15 +2,12 @@
 #include "Cliente.h"
 #include <sstream>
 
-//Tabla de transiciones permitidas segun el enunciado (fila = estado actual, columna = estado destino)
-//Orden de los indices: Recibido=0, Almacenado=1, EnTransito=2, Entregado=3, Incidencia=4
 static bool TABLA_TRANSICIONES[5][5] = {
-	//            Recibido  Almacenado  EnTransito  Entregado  Incidencia
-	/*Recibido*/   { false,   true,       false,      false,     true  },
-	/*Almacenado*/ { false,   false,      true,       false,     true  },
-	/*EnTransito*/ { false,   false,      false,       true,      true  },
-	/*Entregado*/  { false,   false,      false,      false,     false },
-	/*Incidencia*/ { false,   true,       true,       false,     false }
+	   { false,   true,       false,      false,     true  },
+	 { false,   false,      true,       false,     true  },
+	 { false,   false,      false,       true,      true  },
+	  { false,   false,      false,      false,     false },
+	 { false,   true,       true,       false,     false }
 };
 
 Paquete::Paquete(std::string codigoNuevo, std::string descripcionNueva, double pesoNuevo, TipoCategoria categoriaNueva,
@@ -22,7 +19,7 @@ Paquete::Paquete(std::string codigoNuevo, std::string descripcionNueva, double p
 	clientePropietario = clientePropietarioNuevo;
 	centro = centroNuevo;
 
-	estado = EstadoPaquete::RECIBIDO; //Todo paquete nuevo ingresa como Recibido
+	estado = EstadoPaquete::RECIBIDO;
 	estadoPrevioIncidencia = EstadoPaquete::RECIBIDO;
 
 	bodegaAsignada = nullptr;
@@ -31,7 +28,7 @@ Paquete::Paquete(std::string codigoNuevo, std::string descripcionNueva, double p
 }
 
 Paquete::~Paquete() {
-	bitacora.liberarPunteros(); //El paquete es dueno de sus registros de bitacora
+	bitacora.liberarPunteros();
 }
 
 std::string Paquete::getCodigo() const { return codigo; }
@@ -84,7 +81,7 @@ bool Paquete::reportarIncidencia(Colaborador* responsable) {
 	if (!transicionValida(estado, EstadoPaquete::INCIDENCIA)) {
 		return false;
 	}
-	estadoPrevioIncidencia = estado; //Se recuerda el origen antes de que cambiarEstado lo sobreescriba
+	estadoPrevioIncidencia = estado;
 	return cambiarEstado(EstadoPaquete::INCIDENCIA, responsable);
 }
 

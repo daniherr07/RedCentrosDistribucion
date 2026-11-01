@@ -36,7 +36,7 @@ double SolicitudEnvio::getCostoEstimado() const { return costoEstimado; }
 EstadoSolicitud SolicitudEnvio::getEstado() const { return estado; }
 
 bool SolicitudEnvio::cambiarEstado(EstadoSolicitud nuevoEstado) {
-	if (estado != EstadoSolicitud::PENDIENTE) { //Aprobada/Rechazada/Anulada son finales
+	if (estado != EstadoSolicitud::PENDIENTE) {
 		return false;
 	}
 	if (nuevoEstado == EstadoSolicitud::PENDIENTE) {

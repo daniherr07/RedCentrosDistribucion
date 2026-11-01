@@ -17,9 +17,6 @@ class Paquete;
 class Colaborador;
 class CentroDistribucion;
 
-// Una solicitud de envio nace Pendiente y de ahi solo puede pasar a
-// Aprobada, Rechazada o Anulada; esos tres estados son finales (ya no se
-// puede volver a cambiar el estado de la solicitud).
 class SolicitudEnvio
 {
 private:
@@ -47,7 +44,7 @@ public:
 	double getCostoEstimado() const;
 	EstadoSolicitud getEstado() const;
 
-	bool cambiarEstado(EstadoSolicitud nuevoEstado); //solo PENDIENTE -> {APROBADA,RECHAZADA,ANULADA}
+	bool cambiarEstado(EstadoSolicitud nuevoEstado);
 
 	std::string mostrar() const;
 };

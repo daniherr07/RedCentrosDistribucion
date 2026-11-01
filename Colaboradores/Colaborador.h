@@ -2,10 +2,6 @@
 #include <string>
 #include "Fecha.h"
 
-// Colaborador de un centro de distribucion. No participa de la jerarquia
-// de Cliente (son conceptos distintos en el enunciado); se identifica
-// dentro de su propio centro y es quien aparece como responsable en la
-// bitacora de un paquete, en las solicitudes y en los despachos.
 class Colaborador
 {
 private:

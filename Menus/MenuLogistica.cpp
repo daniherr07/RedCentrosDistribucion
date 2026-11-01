@@ -2,7 +2,6 @@
 #include "EntradaUtil.h"
 #include <iostream>
 
-//Valida un texto de hora con formato HH:MM (24 horas), sin usar <regex>
 static bool horaValida(const std::string& hora) {
 	if (hora.size() != 5 || hora[2] != ':') {
 		return false;
@@ -63,10 +62,6 @@ int MenuLogistica::leerCategoria() {
 	} while (!codigoCategoriaValido(codigo));
 	return codigo;
 }
-
-// =======================================================================
-// Bodegas
-// =======================================================================
 
 void MenuLogistica::registrarBodega(CentroDistribucion* centro) {
 	std::cout << "\nRegistrar bodega\n";
@@ -188,10 +183,6 @@ void MenuLogistica::menuBodegas(CentroDistribucion* centro) {
 		}
 	} while (opcion != 6);
 }
-
-// =======================================================================
-// Paquetes
-// =======================================================================
 
 void MenuLogistica::registrarPaquete(CentroDistribucion* centro) {
 	std::cout << "\nRegistrar paquete\n";
@@ -485,10 +476,6 @@ void MenuLogistica::menuPaquetes(CentroDistribucion* centro) {
 	} while (opcion != 9);
 }
 
-// =======================================================================
-// Solicitudes de envio
-// =======================================================================
-
 void MenuLogistica::crearSolicitud(CentroDistribucion* centro) {
 	std::cout << "\nCrear solicitud de envio\n";
 	std::cout << "Codigo de la solicitud (unico en todo el sistema): ";
@@ -649,10 +636,6 @@ void MenuLogistica::menuSolicitudes(CentroDistribucion* centro) {
 	} while (opcion != 6);
 }
 
-// =======================================================================
-// Despachos
-// =======================================================================
-
 void MenuLogistica::buscarDespacho() {
 	std::cout << "\nBuscar despacho\n";
 	std::cout << "Codigo del despacho (busqueda global, no hace falta saber de que centro es): ";
@@ -721,10 +704,6 @@ void MenuLogistica::menuDespachos(CentroDistribucion* centro) {
 		}
 	} while (opcion != 4);
 }
-
-// =======================================================================
-// Menu general de este modulo
-// =======================================================================
 
 void MenuLogistica::menuGeneral() {
 	CentroDistribucion* centro = seleccionarCentro();

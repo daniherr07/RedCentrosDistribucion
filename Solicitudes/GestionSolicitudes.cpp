@@ -64,27 +64,27 @@ SolicitudEnvio* GestionSolicitudes::crearSolicitud(std::string codigo, Cliente* 
 	if (existeCodigo(codigo)) {
 		return nullptr;
 	}
-	if (paquete->getEstado() != EstadoPaquete::ALMACENADO) { //solo se puede solicitar envio de un paquete Almacenado
+	if (paquete->getEstado() != EstadoPaquete::ALMACENADO) {
 		return nullptr;
 	}
-	if (paquete->getClientePropietario() != cliente) { //el cliente debe ser el dueno del paquete
+	if (paquete->getClientePropietario() != cliente) {
 		return nullptr;
 	}
-	if (paquete->getCentro() != centroOrigen) { //el centro de origen debe ser el del paquete
+	if (paquete->getCentro() != centroOrigen) {
 		return nullptr;
 	}
 	if (centroOrigen->getGestionColaboradores()->buscarPorIdentificacion(colaborador->getIdentificacion()) != colaborador) {
-		return nullptr; //el colaborador responsable debe pertenecer a ese mismo centro
-	}
-	if (existePendienteParaPaquete(paquete)) { //solo una solicitud Pendiente a la vez por paquete
 		return nullptr;
 	}
-	if (existeAprobadaParaPaquete(paquete)) { //ya existe una Aprobada (y por lo tanto su despacho), no se permiten mas
+	if (existePendienteParaPaquete(paquete)) {
+		return nullptr;
+	}
+	if (existeAprobadaParaPaquete(paquete)) {
 		return nullptr;
 	}
 
 	double costoBase = paquete->getPeso() * Tarifas::tarifaPorCategoria(paquete->getCategoria());
-	double costoFinal = cliente->aplicarDescuento(costoBase); //polimorfismo: Empresa aplica su descuento, Persona no
+	double costoFinal = cliente->aplicarDescuento(costoBase);
 
 	SolicitudEnvio* nueva = new SolicitudEnvio(codigo, cliente, paquete, colaborador, centroOrigen, destino, costoFinal);
 	solicitudes.insertarAlFinal(nueva);

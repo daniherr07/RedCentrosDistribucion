@@ -1,10 +1,6 @@
 #pragma once
 #include "TipoCategoria.h"
 
-// Tarifas por kilogramo segun la categoria del paquete. Se guardan como
-// datos compartidos (static) de la aplicacion -tal como pide el enunciado-
-// en vez de repetirse como literales dentro de cada calculo de costo
-// (ver GestionSolicitudes::crearSolicitud).
 class Tarifas
 {
 public:

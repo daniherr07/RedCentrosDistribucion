@@ -27,7 +27,7 @@ bool GestionBodegas::registrarBodega(std::string codigo, std::string nombre, Tip
 	if (codigo.empty() || nombre.empty()) {
 		return false;
 	}
-	if (filas <= 0 || columnas <= 0) { //el enunciado exige filas y columnas enteras mayores que cero
+	if (filas <= 0 || columnas <= 0) {
 		return false;
 	}
 	if (existeCodigo(codigo)) {
@@ -44,7 +44,7 @@ bool GestionBodegas::eliminar(std::string codigo) {
 	if (bodega == nullptr) {
 		return false;
 	}
-	if (!bodega->todasLasCeldasLibres()) { //hay al menos un paquete almacenado ahi, no se puede borrar
+	if (!bodega->todasLasCeldasLibres()) {
 		return false;
 	}
 

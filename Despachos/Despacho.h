@@ -16,9 +16,6 @@ class Cliente;
 class Colaborador;
 class CentroDistribucion;
 
-// Un despacho se crea automaticamente al aprobar una solicitud (ver
-// CentroDistribucion::aprobarSolicitud). Nace En proceso y solo puede
-// pasar a Finalizado cuando el paquete asociado esta En transito.
 class Despacho
 {
 private:
@@ -48,7 +45,7 @@ public:
 	std::string getHora() const;
 	EstadoDespacho getEstado() const;
 
-	bool finalizar(); //false si ya estaba Finalizado
+	bool finalizar();
 
 	std::string mostrar() const;
 };
