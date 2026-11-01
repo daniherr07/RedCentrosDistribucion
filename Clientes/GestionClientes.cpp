@@ -81,7 +81,7 @@ std::string GestionClientes::mostrarListado() const
         return ss.str();
     }
 
-    ss << "----- LISTADO DE CLIENTES (" << clientes.getCantidad() << ") -----\n";
+    ss << "Listado de Clientes (" << clientes.getCantidad() << ")\n";
     Nodo<Cliente*>* actual = clientes.getCabeza();
     while (actual != nullptr) {
         ss << actual->getDato()->mostrar() << "\n";

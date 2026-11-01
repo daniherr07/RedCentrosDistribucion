@@ -115,7 +115,7 @@ std::string GestionSolicitudes::mostrarListado() const {
 		return ss.str();
 	}
 
-	ss << "----- LISTADO DE SOLICITUDES (" << solicitudes.getCantidad() << ") -----\n";
+	ss << "solicitudes registradas (" << solicitudes.getCantidad() << "):\n";
 	Nodo<SolicitudEnvio*>* actual = solicitudes.getCabeza();
 	while (actual != nullptr) {
 		ss << actual->getDato()->mostrar() << "\n";

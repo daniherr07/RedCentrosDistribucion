@@ -27,7 +27,7 @@ void MenuCentros::registrarCentro()
 {
     std::string codigo, nombre, provincia, direccion, telefono;
 
-    std::cout << "\n>> Registrar centro de distribucion\n";
+    std::cout << "\nRegistrar centro de distribucion\n";
     std::cout << "Codigo (unico): ";
     codigo = leerPalabra();
 
@@ -46,16 +46,16 @@ void MenuCentros::registrarCentro()
     telefono = leerLinea();
 
     if (red.registrarCentro(codigo, nombre, provincia, direccion, telefono)) {
-        std::cout << "Centro registrado exitosamente.\n";
+        std::cout << "centro registrado con exito\n";
     }
     else {
-        std::cout << "No se pudo registrar el centro. Verifique que ningun dato quede vacio.\n";
+        std::cout << "no se pudo registrar, revise que no haya campos vacios\n";
     }
 }
 
 void MenuCentros::buscarCentro()
 {
-    std::cout << "\n>> Buscar centro de distribucion\n";
+    std::cout << "\nBuscar centro de distribucion\n";
     std::cout << "Codigo del centro: ";
     std::string codigo = leerPalabra();
 
@@ -75,7 +75,7 @@ void MenuCentros::mostrarCentros()
 
 void MenuCentros::eliminarCentro()
 {
-    std::cout << "\n>> Eliminar centro de distribucion\n";
+    std::cout << "\nEliminar centro de distribucion\n";
     std::cout << "Codigo del centro: ";
     std::string codigo = leerPalabra();
 
@@ -85,13 +85,13 @@ void MenuCentros::eliminarCentro()
         return;
     }
     if (centro->tieneDependencias()) {
-        std::cout << "No se puede eliminar: el centro todavia tiene clientes, colaboradores, bodegas,\n";
-        std::cout << "paquetes, solicitudes o despachos asociados.\n";
+        std::cout << "no se puede eliminar, el centro todavia tiene cosas asociadas (clientes,\n";
+        std::cout << "colaboradores, bodegas, paquetes, solicitudes o despachos)\n";
         return;
     }
 
     red.eliminarCentro(codigo);
-    std::cout << "Centro eliminado exitosamente.\n";
+    std::cout << "listo, centro eliminado\n";
 }
 
 // ---------------------------------------------------------------------
@@ -100,7 +100,7 @@ void MenuCentros::eliminarCentro()
 
 void MenuCentros::registrarClientePersona(CentroDistribucion* centro)
 {
-    std::cout << "\n>> Registrar cliente (persona fisica)\n";
+    std::cout << "\nRegistrar cliente (persona fisica)\n";
     std::cout << "Identificacion: ";
     std::string id = leerPalabra();
 
@@ -126,8 +126,8 @@ void MenuCentros::registrarClientePersona(CentroDistribucion* centro)
 
 void MenuCentros::registrarClienteEmpresa(CentroDistribucion* centro)
 {
-    std::cout << "\n>> Registrar cliente (empresa)\n";
-    std::cout << "Identificacion (cedula juridica): ";
+    std::cout << "\nRegistrar cliente (empresa)\n";
+    std::cout << "Identificacion (cedula juridica): "; //ojo que la cedula juridica no es la misma que la fisica
     std::string id = leerPalabra();
 
     if (centro->getGestionClientes()->existeIdentificacion(id)) {
@@ -154,16 +154,16 @@ void MenuCentros::registrarClienteEmpresa(CentroDistribucion* centro)
     } while (descuento < 0.0 || descuento > 100.0);
 
     if (centro->getGestionClientes()->registrarEmpresa(id, nombre, telefono, correo, actividad, descuento)) {
-        std::cout << "Cliente registrado exitosamente.\n";
+        std::cout << "Cliente resgistrado exitosamente.\n";
     }
     else {
-        std::cout << "No se pudo registrar el cliente. Verifique los datos ingresados.\n";
+        std::cout << "no se pudo registrar, revise los datos\n";
     }
 }
 
 void MenuCentros::buscarCliente(CentroDistribucion* centro)
 {
-    std::cout << "\n>> Buscar cliente\n";
+    std::cout << "\nBuscar cliente\n";
     std::cout << "Identificacion del cliente: ";
     std::string id = leerPalabra();
 
@@ -183,7 +183,7 @@ void MenuCentros::mostrarClientes(CentroDistribucion* centro)
 
 void MenuCentros::eliminarCliente(CentroDistribucion* centro)
 {
-    std::cout << "\n>> Eliminar cliente\n";
+    std::cout << "\nEliminar cliente\n";
     std::cout << "Identificacion del cliente: ";
     std::string id = leerPalabra();
 
@@ -204,7 +204,7 @@ void MenuCentros::menuClientes(CentroDistribucion* centro)
 {
     int opcion;
     do {
-        std::cout << "\n>> Clientes de " << centro->getCodigo() << "\n";
+        std::cout << "\nClientes de " << centro->getCodigo() << "\n";
         std::cout << "1. Registrar cliente (persona fisica)\n";
         std::cout << "2. Registrar cliente (empresa)\n";
         std::cout << "3. Buscar cliente\n";
@@ -221,7 +221,7 @@ void MenuCentros::menuClientes(CentroDistribucion* centro)
         case 4: mostrarClientes(centro); break;
         case 5: eliminarCliente(centro); break;
         case 6: break;
-        default: std::cout << "Opcion invalida.\n"; break;
+        default: std::cout << "esa opcion no es valida.\n"; break;
         }
         if (opcion != 6) {
             pausar();
@@ -235,7 +235,7 @@ void MenuCentros::menuClientes(CentroDistribucion* centro)
 
 void MenuCentros::registrarColaborador(CentroDistribucion* centro)
 {
-    std::cout << "\n>> Registrar colaborador\n";
+    std::cout << "\nRegistrar colaborador\n";
     std::cout << "Identificacion: ";
     std::string id = leerPalabra();
 
@@ -260,16 +260,16 @@ void MenuCentros::registrarColaborador(CentroDistribucion* centro)
     std::string puesto = leerLinea();
 
     if (centro->getGestionColaboradores()->registrar(id, nombre, Fecha(dia, mes, anio), puesto)) {
-        std::cout << "Colaborador registrado exitosamente.\n";
+        std::cout << "listo, colaborador registrado\n";
     }
     else {
-        std::cout << "No se pudo registrar el colaborador. Verifique los datos ingresados.\n";
+        std::cout << "no se pudo registrar el colaborador, verifique los datos\n";
     }
 }
 
 void MenuCentros::buscarColaborador(CentroDistribucion* centro)
 {
-    std::cout << "\n>> Buscar colaborador\n";
+    std::cout << "\nBuscar colaborador\n";
     std::cout << "Identificacion del colaborador: ";
     std::string id = leerPalabra();
 
@@ -289,7 +289,7 @@ void MenuCentros::mostrarColaboradores(CentroDistribucion* centro)
 
 void MenuCentros::eliminarColaborador(CentroDistribucion* centro)
 {
-    std::cout << "\n>> Eliminar colaborador\n";
+    std::cout << "\nEliminar colaborador\n";
     std::cout << "Identificacion del colaborador: ";
     std::string id = leerPalabra();
 
@@ -311,7 +311,7 @@ void MenuCentros::menuColaboradores(CentroDistribucion* centro)
 {
     int opcion;
     do {
-        std::cout << "\n>> Colaboradores de " << centro->getCodigo() << "\n";
+        std::cout << "\nColaboradores de " << centro->getCodigo() << "\n";
         std::cout << "1. Registrar colaborador\n";
         std::cout << "2. Buscar colaborador\n";
         std::cout << "3. Mostrar colaboradores del centro\n";
@@ -326,7 +326,7 @@ void MenuCentros::menuColaboradores(CentroDistribucion* centro)
         case 3: mostrarColaboradores(centro); break;
         case 4: eliminarColaborador(centro); break;
         case 5: break;
-        default: std::cout << "Opcion invalida.\n"; break;
+        default: std::cout << "esa opcion no es valida.\n"; break;
         }
         if (opcion != 5) {
             pausar();
@@ -344,7 +344,7 @@ void MenuCentros::menuClientesYColaboradores()
 
     int opcion;
     do {
-        std::cout << "\n>> Centro " << centro->getCodigo() << ": Clientes y Colaboradores\n";
+        std::cout << "\nCentro " << centro->getCodigo() << ": Clientes y Colaboradores\n";
         std::cout << "1. Gestion de clientes\n";
         std::cout << "2. Gestion de colaboradores\n";
         std::cout << "3. Volver\n";
@@ -355,7 +355,7 @@ void MenuCentros::menuClientesYColaboradores()
         case 1: menuClientes(centro); break;
         case 2: menuColaboradores(centro); break;
         case 3: break;
-        default: std::cout << "Opcion invalida.\n"; break;
+        default: std::cout << "esa opcion no es valida.\n"; break;
         }
     } while (opcion != 3);
 }
@@ -364,14 +364,14 @@ void MenuCentros::menu()
 {
     int opcion;
     do {
-        std::cout << "\n===== CENTROS DE DISTRIBUCION =====\n";
+        std::cout << "\nCentros de Distribucion\n";
         std::cout << "1. Registrar centro de distribucion\n";
         std::cout << "2. Buscar centro de distribucion\n";
         std::cout << "3. Mostrar centros de distribucion\n";
         std::cout << "4. Eliminar centro de distribucion\n";
         std::cout << "5. Clientes y colaboradores de un centro\n";
-        std::cout << "6. Volver al menu principal\n";
-        std::cout << "Seleccione una opcion: ";
+        std::cout << "6. volver al menu principal\n";
+        std::cout << "opcion: ";
         opcion = leerEntero();
 
         switch (opcion) {
@@ -381,7 +381,7 @@ void MenuCentros::menu()
         case 4: eliminarCentro(); break;
         case 5: menuClientesYColaboradores(); break;
         case 6: break;
-        default: std::cout << "Opcion invalida.\n"; break;
+        default: std::cout << "esa opcion no existe\n"; break;
         }
         if (opcion >= 1 && opcion <= 4) {
             pausar();

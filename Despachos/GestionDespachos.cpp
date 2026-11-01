@@ -85,7 +85,7 @@ std::string GestionDespachos::mostrarListado() const {
 		return ss.str();
 	}
 
-	ss << "----- LISTADO DE DESPACHOS (" << despachos.getCantidad() << ") -----\n";
+	ss << "despachos registrados (" << despachos.getCantidad() << "):\n";
 	Nodo<Despacho*>* actual = despachos.getCabeza();
 	while (actual != nullptr) {
 		ss << actual->getDato()->mostrar() << "\n";

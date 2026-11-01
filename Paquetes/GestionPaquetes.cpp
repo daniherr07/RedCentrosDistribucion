@@ -163,7 +163,7 @@ std::string GestionPaquetes::mostrarListado() const {
 		return ss.str();
 	}
 
-	ss << "----- LISTADO DE PAQUETES (" << paquetes.getCantidad() << ") -----\n";
+	ss << "paquetes registrados (" << paquetes.getCantidad() << "):\n";
 	Nodo<Paquete*>* actual = paquetes.getCabeza();
 	while (actual != nullptr) {
 		ss << actual->getDato()->mostrar() << "\n";

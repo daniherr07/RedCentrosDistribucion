@@ -79,7 +79,7 @@ std::string GestionBodegas::mostrarListado() const {
 		return ss.str();
 	}
 
-	ss << "----- LISTADO DE BODEGAS (" << bodegas.getCantidad() << ") -----\n";
+	ss << "bodegas registradas (" << bodegas.getCantidad() << "):\n";
 	Nodo<Bodega*>* actual = bodegas.getCabeza();
 	while (actual != nullptr) {
 		Bodega* b = actual->getDato();

@@ -61,7 +61,7 @@ std::string GestionColaboradores::mostrarListado() const
         return ss.str();
     }
 
-    ss << "----- LISTADO DE COLABORADORES (" << colaboradores.getCantidad() << ") -----\n";
+    ss << "Listado de Colaboradores (" << colaboradores.getCantidad() << ")\n";
     Nodo<Colaborador*>* actual = colaboradores.getCabeza();
     while (actual != nullptr) {
         ss << actual->getDato()->mostrar() << "\n";

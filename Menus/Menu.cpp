@@ -17,7 +17,7 @@ CentroDistribucion* Menu::seleccionarCentro() {
 
 	CentroDistribucion* centro = red.buscarCentroPorCodigo(codigo);
 	if (centro == nullptr) {
-		std::cout << "No existe un centro con ese codigo.\n";
+		std::cout << "no existe ese centro\n";
 	}
 	return centro;
 }
@@ -28,11 +28,11 @@ void Menu::reporteHistorialCliente() {
 		return;
 	}
 
-	std::cout << "Identificacion del cliente: ";
+	std::cout << "identificacion del cliente: ";
 	std::string id = leerPalabra();
 	Cliente* cliente = centro->getGestionClientes()->buscarPorIdentificacion(id);
 	if (cliente == nullptr) {
-		std::cout << "No existe un cliente con esa identificacion en ese centro.\n";
+		std::cout << "ese cliente no existe en este centro\n";
 		return;
 	}
 
@@ -60,12 +60,12 @@ void Menu::reporteBitacoraPaquete() {
 }
 
 void Menu::reporteConsultaDespacho() {
-	std::cout << "Codigo del paquete: ";
+	std::cout << "codigo del paquete: ";
 	std::string codigo = leerPalabra();
 
 	Paquete* paquete = red.buscarPaqueteGlobal(codigo);
 	if (paquete == nullptr) {
-		std::cout << "No existe ningun paquete con ese codigo en el sistema.\n";
+		std::cout << "ese paquete no existe\n";
 		return;
 	}
 	std::cout << "\n" << reportes.consultaDespachoPaquete(paquete->getCentro(), paquete) << std::endl;
@@ -81,11 +81,11 @@ void Menu::reporteDespachosPorColaborador() {
 		return;
 	}
 
-	std::cout << "Identificacion del colaborador: ";
+	std::cout << "identificacion del colaborador: ";
 	std::string id = leerPalabra();
 	Colaborador* colaborador = centro->getGestionColaboradores()->buscarPorIdentificacion(id);
 	if (colaborador == nullptr) {
-		std::cout << "No existe un colaborador con esa identificacion en ese centro.\n";
+		std::cout << "no se encontro ese colaborador en el centro\n";
 		return;
 	}
 
@@ -95,15 +95,15 @@ void Menu::reporteDespachosPorColaborador() {
 void Menu::menuReportes() {
 	int opcion;
 	do {
-		std::cout << "\n===== REPORTES Y ESTADISTICAS =====\n";
+		std::cout << "\nReportes y estadisticas\n";
 		std::cout << "1. Historial de un cliente\n";
 		std::cout << "2. Clientes por cantidad de envios\n";
 		std::cout << "3. Bitacora de un paquete\n";
 		std::cout << "4. Consulta de despacho de un paquete\n";
 		std::cout << "5. Ocupacion de bodegas\n";
 		std::cout << "6. Despachos por colaborador\n";
-		std::cout << "7. Volver al menu principal\n";
-		std::cout << "Seleccione una opcion: ";
+		std::cout << "7. volver al menu principal\n";
+		std::cout << "opcion: ";
 		opcion = leerEntero();
 
 		switch (opcion) {
@@ -126,12 +126,12 @@ void Menu::menuPrincipal() {
 	int opcion;
 	do {
 		limpiarPantalla();
-		std::cout << "\tTicoPack Logistics - Red de Centros de Distribucion\n" << std::endl;
-		std::cout << "1. Centros de distribucion (incluye clientes y colaboradores)\n";
+		std::cout << "TicoPack Logistics - Red de Centros de Distribucion\n" << std::endl;
+		std::cout << "1. Centros de distribucion (clientes y colaboradores)\n";
 		std::cout << "2. Bodegas, paquetes, solicitudes de envio y despachos\n";
 		std::cout << "3. Reportes y estadisticas\n";
-		std::cout << "4. Salir\n" << std::endl;
-		std::cout << "Seleccione una opcion: ";
+		std::cout << "4. salir\n" << std::endl;
+		std::cout << "opcion: ";
 		opcion = leerEntero();
 
 		switch (opcion) {
@@ -150,12 +150,12 @@ void Menu::menuPrincipal() {
 		case 4:
 			break;
 		default:
-			std::cout << "Opcion invalida.\n";
+			std::cout << "esa opcion no existe\n";
 			pausar();
 			break;
 		}
 	} while (opcion != 4);
 
-	std::cout << "\nGracias por usar el sistema de TicoPack Logistics.\n";
+	std::cout << "\ngracias por usar el sistema\n";
 	pausar();
 }

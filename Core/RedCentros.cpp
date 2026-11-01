@@ -58,7 +58,7 @@ std::string RedCentros::mostrarListado() const {
 		return ss.str();
 	}
 
-	ss << "----- LISTADO DE CENTROS DE DISTRIBUCION (" << centros.getCantidad() << ") -----\n";
+	ss << "Centros registrados (" << centros.getCantidad() << "):\n";
 	Nodo<CentroDistribucion*>* actual = centros.getCabeza();
 	while (actual != nullptr) {
 		ss << actual->getDato()->mostrarDatos() << "\n";

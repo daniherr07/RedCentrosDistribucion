@@ -69,7 +69,7 @@ int MenuLogistica::leerCategoria() {
 // =======================================================================
 
 void MenuLogistica::registrarBodega(CentroDistribucion* centro) {
-	std::cout << "\n----- Registrar bodega -----\n";
+	std::cout << "\nRegistrar bodega\n";
 	std::cout << "Codigo de la bodega (unico en el centro): ";
 	std::string codigo = leerPalabra();
 
@@ -87,7 +87,7 @@ void MenuLogistica::registrarBodega(CentroDistribucion* centro) {
 		std::cout << "Cantidad de filas (entero mayor que 0): ";
 		filas = leerEntero();
 		if (filas <= 0) {
-			std::cout << "Debe ser mayor que cero.\n";
+			std::cout << "deve ser mayor a cero\n";
 		}
 	} while (filas <= 0);
 
@@ -95,20 +95,20 @@ void MenuLogistica::registrarBodega(CentroDistribucion* centro) {
 		std::cout << "Cantidad de columnas (entero mayor que 0): ";
 		columnas = leerEntero();
 		if (columnas <= 0) {
-			std::cout << "Debe ser mayor que cero.\n";
+			std::cout << "deve ser mayor a cero\n";
 		}
 	} while (columnas <= 0);
 
 	if (centro->getGestionBodegas()->registrarBodega(codigo, nombre, tipo, filas, columnas)) {
-		std::cout << "Bodega registrada exitosamente.\n";
+		std::cout << "bodega registrada\n";
 	}
 	else {
-		std::cout << "No se pudo registrar la bodega.\n";
+		std::cout << "no se pudo registrar la bodega\n";
 	}
 }
 
 void MenuLogistica::buscarBodega(CentroDistribucion* centro) {
-	std::cout << "\n----- Buscar bodega -----\n";
+	std::cout << "\nBuscar bodega\n";
 	std::cout << "Codigo de la bodega: ";
 	std::string codigo = leerPalabra();
 
@@ -130,7 +130,7 @@ void MenuLogistica::mostrarBodegas(CentroDistribucion* centro) {
 }
 
 void MenuLogistica::consultarMatrizBodega(CentroDistribucion* centro) {
-	std::cout << "\n----- Consultar matriz de una bodega -----\n";
+	std::cout << "\nConsultar matriz de una bodega\n";
 	std::cout << "Codigo de la bodega: ";
 	std::string codigo = leerPalabra();
 
@@ -143,7 +143,7 @@ void MenuLogistica::consultarMatrizBodega(CentroDistribucion* centro) {
 }
 
 void MenuLogistica::eliminarBodega(CentroDistribucion* centro) {
-	std::cout << "\n----- Eliminar bodega -----\n";
+	std::cout << "\nEliminar bodega\n";
 	std::cout << "Codigo de la bodega: ";
 	std::string codigo = leerPalabra();
 
@@ -153,18 +153,18 @@ void MenuLogistica::eliminarBodega(CentroDistribucion* centro) {
 		return;
 	}
 	if (!bodega->todasLasCeldasLibres()) {
-		std::cout << "No se puede eliminar: la bodega tiene al menos un paquete almacenado.\n";
+		std::cout << "no se puede eliminar, la bodega tiene paquetes almasenados todavia\n";
 		return;
 	}
 
 	centro->getGestionBodegas()->eliminar(codigo);
-	std::cout << "Bodega eliminada exitosamente.\n";
+	std::cout << "bodega eliminada\n";
 }
 
 void MenuLogistica::menuBodegas(CentroDistribucion* centro) {
 	int opcion;
 	do {
-		std::cout << "\n----- Bodegas de " << centro->getCodigo() << " -----\n";
+		std::cout << "\nBodegas de " << centro->getCodigo() << "\n";
 		std::cout << "1. Registrar bodega\n";
 		std::cout << "2. Buscar bodega\n";
 		std::cout << "3. Mostrar bodegas del centro\n";
@@ -181,7 +181,7 @@ void MenuLogistica::menuBodegas(CentroDistribucion* centro) {
 		case 4: consultarMatrizBodega(centro); break;
 		case 5: eliminarBodega(centro); break;
 		case 6: break;
-		default: std::cout << "Opcion invalida.\n"; break;
+		default: std::cout << "esa opcion no sirve.\n"; break;
 		}
 		if (opcion != 6) {
 			pausar();
@@ -194,7 +194,7 @@ void MenuLogistica::menuBodegas(CentroDistribucion* centro) {
 // =======================================================================
 
 void MenuLogistica::registrarPaquete(CentroDistribucion* centro) {
-	std::cout << "\n----- Registrar paquete -----\n";
+	std::cout << "\nRegistrar paquete\n";
 	std::cout << "Codigo del paquete (unico en todo el sistema): ";
 	std::string codigo = leerPalabra();
 
@@ -206,7 +206,7 @@ void MenuLogistica::registrarPaquete(CentroDistribucion* centro) {
 	std::cout << "Descripcion: ";
 	std::string descripcion = leerLinea();
 	if (descripcion.empty()) {
-		std::cout << "La descripcion no puede estar vacia.\n";
+		std::cout << "la descripcion no puede quedar vacia\n";
 		return;
 	}
 
@@ -215,7 +215,7 @@ void MenuLogistica::registrarPaquete(CentroDistribucion* centro) {
 		std::cout << "Peso en kg (mayor que 0): ";
 		peso = leerDecimal();
 		if (peso <= 0.0) {
-			std::cout << "El peso debe ser mayor que cero.\n";
+			std::cout << "el peso tiene q ser mayor a cero\n";
 		}
 	} while (peso <= 0.0);
 
@@ -231,15 +231,15 @@ void MenuLogistica::registrarPaquete(CentroDistribucion* centro) {
 
 	Paquete* nuevo = centro->getGestionPaquetes()->registrarPaquete(codigo, descripcion, peso, categoria, cliente, centro);
 	if (nuevo != nullptr) {
-		std::cout << "Paquete registrado exitosamente con estado Recibido.\n";
+		std::cout << "paquete registrado, queda en estado Recibido\n";
 	}
 	else {
-		std::cout << "No se pudo registrar el paquete.\n";
+		std::cout << "no se pudo registrar el paquete\n";
 	}
 }
 
 void MenuLogistica::buscarPaquete() {
-	std::cout << "\n----- Buscar paquete -----\n";
+	std::cout << "\nBuscar paquete\n";
 	std::cout << "Codigo del paquete (busqueda global, no hace falta saber de que centro es): ";
 	std::string codigo = leerPalabra();
 
@@ -256,7 +256,7 @@ void MenuLogistica::mostrarPaquetes(CentroDistribucion* centro) {
 }
 
 void MenuLogistica::eliminarPaquete() {
-	std::cout << "\n----- Eliminar paquete -----\n";
+	std::cout << "\nEliminar paquete\n";
 	std::cout << "Codigo del paquete (busqueda global, no hace falta saber de que centro es): ";
 	std::string codigo = leerPalabra();
 
@@ -267,11 +267,11 @@ void MenuLogistica::eliminarPaquete() {
 	}
 
 	if (paquete->getCentro()->eliminarPaquete(codigo)) {
-		std::cout << "Paquete eliminado exitosamente.\n";
+		std::cout << "paquete eliminado\n";
 	}
 	else {
-		std::cout << "No se puede eliminar: el paquete no esta Recibido, tiene una ubicacion asignada,\n";
-		std::cout << "o tiene solicitudes/despachos asociados.\n";
+		std::cout << "no se puede eliminar, el paquete no esta Recibido, tiene ubicacion asignada\n";
+		std::cout << "o tiene solicitudes/despachos asociados\n";
 	}
 }
 
@@ -322,15 +322,15 @@ void MenuLogistica::ejecutarAlmacenamiento(CentroDistribucion* centro, Paquete* 
 	}
 
 	if (centro->getGestionPaquetes()->almacenarPaquete(paquete, bodegaElegida, filaElegida, columnaElegida, responsable)) {
-		std::cout << "Paquete almacenado exitosamente en " << bodegaElegida->formatoCelda(filaElegida, columnaElegida) << ".\n";
+		std::cout << "quedo almasenado en " << bodegaElegida->formatoCelda(filaElegida, columnaElegida) << "\n";
 	}
 	else {
-		std::cout << "No se pudo almacenar el paquete. Verifique que la celda exista y este disponible.\n";
+		std::cout << "no se pudo almacenar, revise que la celda exista y este disponible\n";
 	}
 }
 
 void MenuLogistica::almacenarPaquete(CentroDistribucion* centro) {
-	std::cout << "\n----- Almacenar paquete -----\n";
+	std::cout << "\nAlmacenar paquete\n";
 	std::cout << "Codigo del paquete: ";
 	std::string codigo = leerPalabra();
 
@@ -354,7 +354,7 @@ void MenuLogistica::almacenarPaquete(CentroDistribucion* centro) {
 }
 
 void MenuLogistica::reubicarPaquete(CentroDistribucion* centro) {
-	std::cout << "\n----- Reubicar paquete -----\n";
+	std::cout << "\nReubicar paquete\n";
 	std::cout << "Codigo del paquete: ";
 	std::string codigo = leerPalabra();
 
@@ -395,7 +395,7 @@ void MenuLogistica::reubicarPaquete(CentroDistribucion* centro) {
 }
 
 void MenuLogistica::reportarIncidencia(CentroDistribucion* centro) {
-	std::cout << "\n----- Reportar incidencia -----\n";
+	std::cout << "\nReportar incidencia\n";
 	std::cout << "Codigo del paquete: ";
 	std::string codigo = leerPalabra();
 
@@ -410,15 +410,15 @@ void MenuLogistica::reportarIncidencia(CentroDistribucion* centro) {
 	}
 
 	if (centro->getGestionPaquetes()->reportarIncidencia(codigo, responsable)) {
-		std::cout << "Incidencia registrada exitosamente.\n";
+		std::cout << "incidencia registrada\n";
 	}
 	else {
-		std::cout << "No se pudo registrar la incidencia (el estado actual del paquete no lo permite).\n";
+		std::cout << "no se pudo registrar la incidencia, el estado del paquete no lo permite\n";
 	}
 }
 
 void MenuLogistica::resolverIncidencia(CentroDistribucion* centro) {
-	std::cout << "\n----- Resolver incidencia -----\n";
+	std::cout << "\nResolver incidencia\n";
 	std::cout << "Codigo del paquete: ";
 	std::string codigo = leerPalabra();
 
@@ -444,17 +444,17 @@ void MenuLogistica::resolverIncidencia(CentroDistribucion* centro) {
 	}
 
 	if (centro->getGestionPaquetes()->resolverIncidencia(codigo, responsable)) {
-		std::cout << "Incidencia resuelta exitosamente.\n";
+		std::cout << "incidencia resuelta\n";
 	}
 	else {
-		std::cout << "No se pudo resolver la incidencia.\n";
+		std::cout << "no se pudo resolver la incidencia\n";
 	}
 }
 
 void MenuLogistica::menuPaquetes(CentroDistribucion* centro) {
 	int opcion;
 	do {
-		std::cout << "\n----- Paquetes de " << centro->getCodigo() << " -----\n";
+		std::cout << "\nPaquetes de " << centro->getCodigo() << "\n";
 		std::cout << "1. Registrar paquete\n";
 		std::cout << "2. Buscar paquete\n";
 		std::cout << "3. Mostrar paquetes del centro\n";
@@ -477,7 +477,7 @@ void MenuLogistica::menuPaquetes(CentroDistribucion* centro) {
 		case 7: reportarIncidencia(centro); break;
 		case 8: resolverIncidencia(centro); break;
 		case 9: break;
-		default: std::cout << "Opcion invalida.\n"; break;
+		default: std::cout << "esa opcion no sirve.\n"; break;
 		}
 		if (opcion != 9) {
 			pausar();
@@ -490,7 +490,7 @@ void MenuLogistica::menuPaquetes(CentroDistribucion* centro) {
 // =======================================================================
 
 void MenuLogistica::crearSolicitud(CentroDistribucion* centro) {
-	std::cout << "\n----- Crear solicitud de envio -----\n";
+	std::cout << "\nCrear solicitud de envio\n";
 	std::cout << "Codigo de la solicitud (unico en todo el sistema): ";
 	std::string codigo = leerPalabra();
 
@@ -519,16 +519,16 @@ void MenuLogistica::crearSolicitud(CentroDistribucion* centro) {
 		codigo, paquete->getClientePropietario(), paquete, colaborador, centro, destino);
 
 	if (nueva != nullptr) {
-		std::cout << "Solicitud creada exitosamente. Costo estimado: " << nueva->getCostoEstimado() << "\n";
+		std::cout << "solicitud creada, costo estimado: " << nueva->getCostoEstimado() << "\n";
 	}
 	else {
-		std::cout << "No se pudo crear la solicitud. Verifique que el paquete este Almacenado y que no tenga\n";
-		std::cout << "ya una solicitud Pendiente o Aprobada.\n";
+		std::cout << "no se pudo crear la solicitud, revise q el paquete este Almacenado y q no tenga\n";
+		std::cout << "ya una solicitud Pendiente o Aprobada\n";
 	}
 }
 
 void MenuLogistica::buscarSolicitud() {
-	std::cout << "\n----- Buscar solicitud -----\n";
+	std::cout << "\nBuscar solicitud\n";
 	std::cout << "Codigo de la solicitud (busqueda global, no hace falta saber de que centro es): ";
 	std::string codigo = leerPalabra();
 
@@ -545,7 +545,7 @@ void MenuLogistica::mostrarSolicitudes(CentroDistribucion* centro) {
 }
 
 void MenuLogistica::aprobarSolicitud(CentroDistribucion* centro) {
-	std::cout << "\n----- Aprobar solicitud -----\n";
+	std::cout << "\nAprobar solicitud\n";
 	std::cout << "Codigo de la solicitud: ";
 	std::string codigo = leerPalabra();
 
@@ -582,16 +582,16 @@ void MenuLogistica::aprobarSolicitud(CentroDistribucion* centro) {
 	} while (!horaValida(hora));
 
 	if (centro->aprobarSolicitud(codigo, responsable, codigoDespacho, hora)) {
-		std::cout << "Solicitud aprobada y despacho " << codigoDespacho << " creado exitosamente.\n";
+		std::cout << "solicitud aprobada, se creo el despacho " << codigoDespacho << "\n";
 	}
 	else {
-		std::cout << "No se pudo aprobar la solicitud. Verifique que el paquete siga Almacenado y que\n";
-		std::cout << "no tenga ya un despacho asociado.\n";
+		std::cout << "no se pudo aprobar, verifique que el paquete siga Almacenado y que\n";
+		std::cout << "no tenga ya un despacho asociado\n";
 	}
 }
 
 void MenuLogistica::rechazarOAnularSolicitud(CentroDistribucion* centro) {
-	std::cout << "\n----- Rechazar o anular solicitud -----\n";
+	std::cout << "\nRechazar o anular solicitud\n";
 	std::cout << "Codigo de la solicitud: ";
 	std::string codigo = leerPalabra();
 
@@ -610,7 +610,7 @@ void MenuLogistica::rechazarOAnularSolicitud(CentroDistribucion* centro) {
 		std::cout << "1. Rechazar\n2. Anular\nSeleccione una opcion: ";
 		opcion = leerEntero();
 		if (opcion != 1 && opcion != 2) {
-			std::cout << "Opcion invalida.\n";
+			std::cout << "esa opcion no sirve.\n";
 		}
 	} while (opcion != 1 && opcion != 2);
 
@@ -618,13 +618,13 @@ void MenuLogistica::rechazarOAnularSolicitud(CentroDistribucion* centro) {
 		? centro->getGestionSolicitudes()->rechazar(codigo)
 		: centro->getGestionSolicitudes()->anular(codigo);
 
-	std::cout << (exito ? "Solicitud actualizada exitosamente.\n" : "No se pudo actualizar la solicitud.\n");
+	std::cout << (exito ? "listo, se actualizo la solicitud\n" : "no se pudo actualizar\n");
 }
 
 void MenuLogistica::menuSolicitudes(CentroDistribucion* centro) {
 	int opcion;
 	do {
-		std::cout << "\n----- Solicitudes de envio de " << centro->getCodigo() << " -----\n";
+		std::cout << "\nSolicitudes de envio de " << centro->getCodigo() << "\n";
 		std::cout << "1. Crear solicitud\n";
 		std::cout << "2. Buscar solicitud\n";
 		std::cout << "3. Mostrar solicitudes del centro\n";
@@ -641,7 +641,7 @@ void MenuLogistica::menuSolicitudes(CentroDistribucion* centro) {
 		case 4: aprobarSolicitud(centro); break;
 		case 5: rechazarOAnularSolicitud(centro); break;
 		case 6: break;
-		default: std::cout << "Opcion invalida.\n"; break;
+		default: std::cout << "esa opcion no sirve.\n"; break;
 		}
 		if (opcion != 6) {
 			pausar();
@@ -654,7 +654,7 @@ void MenuLogistica::menuSolicitudes(CentroDistribucion* centro) {
 // =======================================================================
 
 void MenuLogistica::buscarDespacho() {
-	std::cout << "\n----- Buscar despacho -----\n";
+	std::cout << "\nBuscar despacho\n";
 	std::cout << "Codigo del despacho (busqueda global, no hace falta saber de que centro es): ";
 	std::string codigo = leerPalabra();
 
@@ -671,7 +671,7 @@ void MenuLogistica::mostrarDespachos(CentroDistribucion* centro) {
 }
 
 void MenuLogistica::finalizarDespacho(CentroDistribucion* centro) {
-	std::cout << "\n----- Finalizar entrega de un despacho -----\n";
+	std::cout << "\nFinalizar entrega de un despacho\n";
 	std::cout << "Codigo del despacho: ";
 	std::string codigo = leerPalabra();
 
@@ -691,17 +691,17 @@ void MenuLogistica::finalizarDespacho(CentroDistribucion* centro) {
 	}
 
 	if (centro->getGestionDespachos()->finalizarEntrega(codigo, responsable)) {
-		std::cout << "Entrega finalizada exitosamente. El paquete ahora esta Entregado.\n";
+		std::cout << "entrega finalizada, el paquete quedo Entregado\n";
 	}
 	else {
-		std::cout << "No se pudo finalizar la entrega (verifique que el paquete este En transito).\n";
+		std::cout << "no se pudo finalizar, verifique q el paquete este En transito\n";
 	}
 }
 
 void MenuLogistica::menuDespachos(CentroDistribucion* centro) {
 	int opcion;
 	do {
-		std::cout << "\n----- Despachos de " << centro->getCodigo() << " -----\n";
+		std::cout << "\nDespachos de " << centro->getCodigo() << "\n";
 		std::cout << "1. Buscar despacho\n";
 		std::cout << "2. Mostrar despachos del centro\n";
 		std::cout << "3. Finalizar entrega\n";
@@ -714,7 +714,7 @@ void MenuLogistica::menuDespachos(CentroDistribucion* centro) {
 		case 2: mostrarDespachos(centro); break;
 		case 3: finalizarDespacho(centro); break;
 		case 4: break;
-		default: std::cout << "Opcion invalida.\n"; break;
+		default: std::cout << "esa opcion no sirve.\n"; break;
 		}
 		if (opcion != 4) {
 			pausar();
@@ -735,7 +735,7 @@ void MenuLogistica::menuGeneral() {
 
 	int opcion;
 	do {
-		std::cout << "\n===== Centro " << centro->getCodigo() << ": Bodegas, Paquetes, Solicitudes y Despachos =====\n";
+		std::cout << "\nCentro " << centro->getCodigo() << " - bodegas, paquetes, solicitudes y despachos\n";
 		std::cout << "1. Bodegas y consulta de matrices\n";
 		std::cout << "2. Paquetes (almacenamiento, reubicacion, incidencias)\n";
 		std::cout << "3. Solicitudes de envio\n";
@@ -750,7 +750,7 @@ void MenuLogistica::menuGeneral() {
 		case 3: menuSolicitudes(centro); break;
 		case 4: menuDespachos(centro); break;
 		case 5: break;
-		default: std::cout << "Opcion invalida.\n"; break;
+		default: std::cout << "esa opcion no sirve.\n"; break;
 		}
 	} while (opcion != 5);
 }
